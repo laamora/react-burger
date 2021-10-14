@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: 560px;
+  height: 80px;
+}
+
+.container1 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+  width: 588px;
+  height: auto;
+  padding-right: 8px;
+}
+
+.container2 {
+  height: 272px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.bun_container {
+  padding-right: "8px";
+}
+.button_and_price_container {
+  margin-top: 24px;
+  padding-right: 16px;
+  display: flex;
+  align-items: center;
+}
+.full_price_container {
+  display: flex;
+  align-items: center;
+  margin-right: 41.5px;
+}
