@@ -41,9 +41,9 @@ const BurgerConstructor = (props) => {
           <div className={style.container1}>
             {items
               .filter((el) => el.type !== "bun")
-              .map((el) => {
+              .map((el, i) => {
                 return (
-                  <div className={style.container} key={el._id}>
+                  <div className={style.container} key={i}>
                     <DragIcon type="primary" />
                     <ConstructorElement
                       text={el.name}
