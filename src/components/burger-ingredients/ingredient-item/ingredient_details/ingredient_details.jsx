@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import style from "./ingredient_details.module.css";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { dataItem } from "../../../../utils/types";
 
 const modalRoot = document.getElementById("react-modals");
 
@@ -83,3 +84,7 @@ const IngredientDetails = (props) => {
 };
 
 export default IngredientDetails;
+
+IngredientDetails.propTypes = {
+  item: dataItem,
+};

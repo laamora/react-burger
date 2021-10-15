@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import style from "./ingredient-item.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientDetails from "./ingredient_details/ingredient_details";
+import { dataItem } from "../../../utils/types";
 
 const IngredientItem = (props) => {
   const [details, showDetails] = useState(false);
@@ -38,3 +39,7 @@ const IngredientItem = (props) => {
 };
 
 export default IngredientItem;
+
+IngredientItem.propTypes = {
+  item: dataItem,
+};

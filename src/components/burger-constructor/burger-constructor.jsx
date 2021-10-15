@@ -7,7 +7,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./burger-constructor.module.css";
 import Details from "./details/details";
-import PropTypes from "prop-types";
+import { data } from "../../utils/types";
 
 const BurgerConstructor = (props) => {
   const [details, showDetails] = useState(false);
@@ -43,7 +43,7 @@ const BurgerConstructor = (props) => {
               .filter((el) => el.type !== "bun")
               .map((el) => {
                 return (
-                  <div className={style.container}>
+                  <div className={style.container} key={el._id}>
                     <DragIcon type="primary" />
                     <ConstructorElement
                       text={el.name}
@@ -86,20 +86,5 @@ const BurgerConstructor = (props) => {
 export default BurgerConstructor;
 
 BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      proteins: PropTypes.number.isRequired,
-      fat: PropTypes.number.isRequired,
-      carbohydrates: PropTypes.number.isRequired,
-      calories: PropTypes.number.isRequired,
-      price: PropTypes.number.isRequired,
-      image: PropTypes.string.isRequired,
-      image_mobile: PropTypes.string.isRequired,
-      image_large: PropTypes.string.isRequired,
-      __v: PropTypes.number.isRequired,
-    }).isRequired
-  ).isRequired,
+  items: data,
 };

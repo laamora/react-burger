@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import style from "./app.module.css";
 import AppHeader from "../app-header/app-header";
 import { data } from "../../utils/data";
 import { dataForConstructor } from "../../utils/dataForConstructor";
@@ -10,13 +10,13 @@ import BurgerConstructor from "../burger-constructor/burger-constructor";
 
 function App() {
   return (
-    <div className="App">
+    <div className={style.App}>
       <AppHeader />
-      <div className="AppContainer">
-        <div className="App2Container">
+      <div className={style.AppContainer}>
+        <div className={style.App2Container}>
           <BurgerIngedients data={data} />
         </div>
-        <div className="App3Container">
+        <div className={style.App3Container}>
           <BurgerConstructor items={dataForConstructor} />
         </div>
       </div>
