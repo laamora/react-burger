@@ -1,14 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import style from "./modal-overlay.module.css";
+import PropTypes from "prop-types";
 
 const modalRoot = document.getElementById("react-modals");
 
 const ModalOverlay = ({ children, show }) => {
   const clickHandler = (e) => {
     if (e.target === document.getElementById("ModalOverlay")) {
-      console.log("e.target", e.target);
-      console.log("e.currentTarget", e.currentTarget);
       show(false);
     }
   };
@@ -25,3 +24,8 @@ const ModalOverlay = ({ children, show }) => {
 };
 
 export default ModalOverlay;
+
+ModalOverlay.propTypes = {
+  children: PropTypes.node.isRequired,
+  show: PropTypes.func.isRequired,
+};

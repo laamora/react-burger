@@ -2,6 +2,7 @@ import React from "react";
 import style from "./modal.module.css";
 import ModalOverlay from "./modal-overlay/modal-overlay";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
 
 const Modal = ({ children, header, show }) => {
   return (
@@ -21,3 +22,9 @@ const Modal = ({ children, header, show }) => {
 };
 
 export default Modal;
+
+Modal.propTypes = {
+  children: PropTypes.node.isRequired,
+  header: PropTypes.string,
+  show: PropTypes.func.isRequired,
+};
