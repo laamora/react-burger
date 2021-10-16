@@ -2,12 +2,11 @@ import React from "react";
 import style from "./ingredient_details.module.css";
 import { dataItem } from "../../../../utils/types";
 import Modal from "../../../modal/modal";
+import PropTypes from "prop-types";
 
 const IngredientDetails = ({ show, item }) => {
   const onKeyPressHandler = (e) => {
     if (e.keyCode === 27) {
-      console.log(e);
-      console.log(e.keyCode);
       show(false);
     }
   };
@@ -83,4 +82,5 @@ export default IngredientDetails;
 
 IngredientDetails.propTypes = {
   item: dataItem,
+  show: PropTypes.func.isRequired,
 };

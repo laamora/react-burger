@@ -2,12 +2,11 @@ import React from "react";
 import style from "./order-details.module.css";
 import img from "../../../images/done.png";
 import Modal from "../../modal/modal";
+import PropTypes from "prop-types";
 
 const OrderDetails = ({ show }) => {
   const onKeyPressHandler = (e) => {
     if (e.keyCode === 27) {
-      console.log(e);
-      console.log(e.keyCode);
       show(false);
     }
   };
@@ -41,3 +40,7 @@ const OrderDetails = ({ show }) => {
 };
 
 export default OrderDetails;
+
+OrderDetails.propTypes = {
+  show: PropTypes.func.isRequired,
+};
