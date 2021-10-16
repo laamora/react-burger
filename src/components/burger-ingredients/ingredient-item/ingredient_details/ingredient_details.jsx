@@ -1,85 +1,81 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import style from "./ingredient_details.module.css";
-import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { dataItem } from "../../../../utils/types";
+import Modal from "../../../modal/modal";
 
-const modalRoot = document.getElementById("react-modals");
+const IngredientDetails = ({ show, item }) => {
+  const onKeyPressHandler = (e) => {
+    if (e.keyCode === 27) {
+      console.log(e);
+      console.log(e.keyCode);
+      show(false);
+    }
+  };
 
-const IngredientDetails = (props) => {
-  return ReactDOM.createPortal(
-    <div className={style.background}>
-      <div className={style.cart}>
-        <div className={style.container}>
-          <div className={style.button_container}>
-            <p className="text text_type_main-large">Детали ингредиента</p>
-            <CloseIcon
-              type="primary"
-              onClick={() => props.showDetails(false)}
-            />
+  React.useEffect(() => {
+    document.addEventListener("keydown", onKeyPressHandler, false);
+    return () => {
+      document.removeEventListener("keydown", onKeyPressHandler, false);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return (
+    <Modal show={show} header={"Детали ингридиента"}>
+      <img src={item.image_large} alt={item.name} className="" />
+      <div className={style.text_container}>
+        <p className="text text_type_main-medium">{item.name}</p>
+      </div>
+      <div className={style.pfc_container}>
+        <div className={style.pfc_item}>
+          <div className={style.calories_text}>
+            <p className="text text_type_main-default text_color_inactive">
+              Калории,ккал
+            </p>
           </div>
-          <img
-            src={props.item.image_large}
-            alt={props.item.name}
-            className=""
-          />
-          <div className={style.text_container}>
-            <p className="text text_type_main-medium">{props.item.name}</p>
+          <div className={style.calories_text}>
+            <p className="text text_type_digits-default text_color_inactive">
+              {item.calories}
+            </p>
           </div>
-          <div className={style.pfc_container}>
-            <div className={style.pfc_item}>
-              <div className={style.calories_text}>
-                <p className="text text_type_main-default text_color_inactive">
-                  Калории,ккал
-                </p>
-              </div>
-              <div className={style.calories_text}>
-                <p className="text text_type_digits-default text_color_inactive">
-                  {props.item.calories}
-                </p>
-              </div>
-            </div>
-            <div className={style.pfc_item}>
-              <div className={style.text_pfc}>
-                <p className="text text_type_main-default text_color_inactive">
-                  Белки, г
-                </p>
-              </div>
-              <div className={style.text_pfc}>
-                <p className="text text_type_digits-default text_color_inactive">
-                  {props.item.proteins}
-                </p>
-              </div>
-            </div>
-            <div className={style.pfc_item}>
-              <div className={style.text_pfc}>
-                <p className="text text_type_main-default text_color_inactive">
-                  Жиры, г
-                </p>
-              </div>
-              <div className={style.text_pfc}>
-                <p className="text text_type_digits-default text_color_inactive">
-                  {props.item.fat}
-                </p>
-              </div>
-            </div>
-            <div className={style.pfc_item}>
-              <div className={style.text_pfc}>
-                <p className="text text_type_main-default text_color_inactive">
-                  Углеводы, г
-                </p>
-              </div>
-              <div className={style.text_pfc}>
-                <p className="text text_type_digits-default text_color_inactive">
-                  {props.item.carbohydrates}
-                </p>
-              </div>
-            </div>
+        </div>
+        <div className={style.pfc_item}>
+          <div className={style.text_pfc}>
+            <p className="text text_type_main-default text_color_inactive">
+              Белки, г
+            </p>
+          </div>
+          <div className={style.text_pfc}>
+            <p className="text text_type_digits-default text_color_inactive">
+              {item.proteins}
+            </p>
+          </div>
+        </div>
+        <div className={style.pfc_item}>
+          <div className={style.text_pfc}>
+            <p className="text text_type_main-default text_color_inactive">
+              Жиры, г
+            </p>
+          </div>
+          <div className={style.text_pfc}>
+            <p className="text text_type_digits-default text_color_inactive">
+              {item.fat}
+            </p>
+          </div>
+        </div>
+        <div className={style.pfc_item}>
+          <div className={style.text_pfc}>
+            <p className="text text_type_main-default text_color_inactive">
+              Углеводы, г
+            </p>
+          </div>
+          <div className={style.text_pfc}>
+            <p className="text text_type_digits-default text_color_inactive">
+              {item.carbohydrates}
+            </p>
           </div>
         </div>
       </div>
-    </div>,
-    modalRoot
+    </Modal>
   );
 };
 

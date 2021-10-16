@@ -31,9 +31,7 @@ const IngredientItem = (props) => {
           </p>
         </div>
       </div>
-      {details && (
-        <IngredientDetails showDetails={showDetails} item={props.item} />
-      )}
+      {details && <IngredientDetails show={showDetails} item={props.item} />}
     </>
   );
 };

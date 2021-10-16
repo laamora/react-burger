@@ -1,0 +1,39 @@
+.text_container {
+  text-shadow: 0px 0px 16px rgba(51, 51, 255, 0.25),
+    0px 0px 8px rgba(51, 51, 255, 0.25), 0px 4px 32px rgba(51, 51, 255, 0.5);
+  text-align: center;
+  line-height: 120px;
+  height: 120px;
+  width: 520px;
+  margin-bottom: 32px;
+}
+
+.text_container2 {
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+  width: 520px;
+  margin-bottom: 60px;
+}
+
+.text_container3 {
+  text-align: center;
+  line-height: 24px;
+  height: 24px;
+  width: 520px;
+  margin-bottom: 8px;
+}
+
+.text_container4 {
+  text-align: center;
+  line-height: 24px;
+  height: 24px;
+  width: 520px;
+  margin-bottom: 120px;
+}
+
+.image_container {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 60px;
+}

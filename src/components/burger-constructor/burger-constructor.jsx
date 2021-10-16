@@ -6,7 +6,7 @@ import {
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./burger-constructor.module.css";
-import Details from "./details/details";
+import OrderDetails from "./order-details/order-details";
 import { data } from "../../utils/types";
 
 const BurgerConstructor = (props) => {
@@ -78,7 +78,7 @@ const BurgerConstructor = (props) => {
           </Button>
         </div>
       </div>
-      {details && <Details showDetails={showDetails} />}
+      {details && <OrderDetails show={showDetails} />}
     </>
   );
 };
