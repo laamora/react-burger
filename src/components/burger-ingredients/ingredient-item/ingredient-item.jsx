@@ -6,13 +6,25 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientDetails from "./ingredient_details/ingredient_details";
 import { dataItem } from "../../../utils/types";
+import { DragPreviewImage, useDrag } from "react-dnd";
 
 const IngredientItem = (props) => {
   const [details, showDetails] = useState(false);
 
+  const { item } = props;
+  const [{ isDragging }, dragRef, preview] = useDrag({
+    type: "ingredient",
+    item: item,
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
+  const opacity = isDragging ? 0.5 : 1;
+
   return (
     <>
-      <div className={style.cart}>
+      <DragPreviewImage connect={preview} src={props.item.image} />
+      <div className={style.cart} ref={dragRef} style={{ ...style, opacity }}>
         <img
           src={props.item.image}
           className={style.image}
