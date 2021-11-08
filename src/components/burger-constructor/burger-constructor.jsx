@@ -14,6 +14,7 @@ import {
   setIngredient,
 } from "../../services/actions/burger-constructor";
 import ConstructorIngredient from "./constructor-ingredient/constructor-ingredient";
+import { getNumber } from "../../services/actions/order-details";
 
 const BurgerConstructor = () => {
   const [details, showDetails] = useState(false);
@@ -21,8 +22,25 @@ const BurgerConstructor = () => {
   const bun = useSelector((state) => state.constructors.bun);
   const ingredients = useSelector((state) => state.constructors?.ingredients);
   const sumTotal = ingredients?.reduce((sum, { price }) => sum + price, 0);
-  const fullPrice =
-    bun && ingredients.length > 0 ? bun?.price * 2 + sumTotal : 0;
+
+  const handleClick = () => {
+    showDetails(true);
+    const Ids = [...ingredients.map((item) => item._id), bun._id];
+    console.log(Ids);
+    dispatch(getNumber(Ids));
+  };
+
+  const getFullPrice = () => {
+    if (bun && ingredients.length > 0) {
+      return bun?.price * 2 + sumTotal;
+    } else if (bun) {
+      return bun?.price * 2;
+    } else if (ingredients.length > 0) {
+      return sumTotal;
+    } else {
+      return 0;
+    }
+  };
 
   const [, dropRef] = useDrop(
     {
@@ -91,13 +109,15 @@ const BurgerConstructor = () => {
         </div>
         <div className={style.button_and_price_container}>
           <div className={style.full_price_container}>
-            <p className="text text_type_digits-medium mr-3">{fullPrice}</p>
+            <p className="text text_type_digits-medium mr-3">
+              {getFullPrice()}
+            </p>
             <CurrencyIcon type="primary" />
           </div>
           <Button
             type="primary"
             size="medium"
-            onClick={() => showDetails(true)}
+            onClick={() => handleClick()}
             disabled={!bun}
           >
             Оформить заказ

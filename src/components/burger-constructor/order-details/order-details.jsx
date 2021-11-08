@@ -3,11 +3,15 @@ import style from "./order-details.module.css";
 import img from "../../../images/done.png";
 import Modal from "../../modal/modal";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { removeOrder } from "../../../services/actions/order-details";
 
 const OrderDetails = ({ show }) => {
+  const dispatch = useDispatch();
   const onKeyPressHandler = (e) => {
     if (e.keyCode === 27) {
       show(false);
+      dispatch(removeOrder());
     }
   };
 
@@ -18,10 +22,11 @@ const OrderDetails = ({ show }) => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const number = useSelector((state) => state.order.orderNumber);
   return (
     <Modal show={show}>
       <div className={style.text_container}>
-        <p className="text text_type_digits-large">034536</p>
+        <p className="text text_type_digits-large">{number}</p>
       </div>
       <div className={style.text_container2}>
         <p className="text text_type_main-medium">идентификатор заказа</p>

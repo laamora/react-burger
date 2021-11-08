@@ -9,6 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import { burgerIngredients } from "./services/reducers/burger-ingredients";
 import { burgerConstructor } from "./services/reducers/burger-constructor";
 import { ingredientDetails } from "./services/reducers/ingredient-details";
+import { orderDetails } from "./services/reducers/order-details";
 
 const composeEnhancers =
   (process.env.NODE_ENV === "development"
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   ingredients: burgerIngredients,
   constructors: burgerConstructor,
   details: ingredientDetails,
+  order: orderDetails,
 });
 
 const store = createStore(

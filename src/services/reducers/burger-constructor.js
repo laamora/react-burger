@@ -8,6 +8,7 @@ import {
 const defaultState = {
   ingredients: [],
   bun: null,
+  count: 0,
 };
 
 export const burgerConstructor = (state = defaultState, action) => {
@@ -16,6 +17,7 @@ export const burgerConstructor = (state = defaultState, action) => {
       return {
         ...state,
         ingredients: [...state.ingredients, action.payload],
+        count: state.count + 1,
       };
     case DELETE_INGREDIENT:
       return {
@@ -23,6 +25,7 @@ export const burgerConstructor = (state = defaultState, action) => {
         ingredients: state.ingredients.filter(
           (item) => item.key !== action.payload
         ),
+        count: state.count - 1,
       };
     case MOVE_INGREDIENTS: {
       const newIngredients = [...state.ingredients];
@@ -37,7 +40,13 @@ export const burgerConstructor = (state = defaultState, action) => {
       };
     }
     case SET_BUN:
-      return { ...state, bun: action.payload };
+      let a = 0;
+      if (state.bun === null) {
+        a = 2;
+      } else {
+        a = 0;
+      }
+      return { ...state, bun: action.payload, count: state.count + a };
     default:
       return state;
   }

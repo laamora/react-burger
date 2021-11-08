@@ -1,16 +1,49 @@
-import { POST, REMOVE_DETAILS } from "../actions/order-details";
+import {
+  GET_ORDER_REQUEST,
+  GET_ORDER_FAILED,
+  GET_ORDER_SUCCESS,
+  REMOVE_ORDER,
+} from "../actions/order-details";
 
 const defaultState = {
-  number: null,
+  orderNumber: null,
+  orderRequest: false,
+  orderFailed: false,
 };
 
 export const orderDetails = (state = defaultState, action) => {
   switch (action.type) {
-    case POST:
-      return { details: action.payload };
-    case REMOVE_DETAILS:
-      return { details: null };
-    default:
+    case GET_ORDER_REQUEST: {
+      return {
+        ...state,
+        orderRequest: true,
+      };
+    }
+    case GET_ORDER_SUCCESS: {
+      return {
+        ...state,
+        orderNumber: action.payload,
+        orderRequest: false,
+        orderFailed: false,
+      };
+    }
+    case GET_ORDER_FAILED: {
+      return {
+        ...state,
+        orderRequest: false,
+        orderFailed: true,
+      };
+    }
+    case REMOVE_ORDER: {
+      return {
+        ...state,
+        orderNumber: null,
+        orderRequest: false,
+        orderFailed: false,
+      };
+    }
+    default: {
       return state;
+    }
   }
 };
