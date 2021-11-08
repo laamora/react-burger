@@ -8,6 +8,7 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { burgerIngredients } from "./services/reducers/burger-ingredients";
 import { burgerConstructor } from "./services/reducers/burger-constructor";
+import { ingredientDetails } from "./services/reducers/ingredient-details";
 
 const composeEnhancers =
   (process.env.NODE_ENV === "development"
@@ -16,7 +17,8 @@ const composeEnhancers =
 
 const rootReducer = combineReducers({
   ingredients: burgerIngredients,
-  constructor: burgerConstructor,
+  constructors: burgerConstructor,
+  details: ingredientDetails,
 });
 
 const store = createStore(

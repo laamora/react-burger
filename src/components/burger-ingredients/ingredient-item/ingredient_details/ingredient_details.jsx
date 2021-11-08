@@ -3,14 +3,19 @@ import style from "./ingredient_details.module.css";
 import { dataItem } from "../../../../utils/types";
 import Modal from "../../../modal/modal";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { removeDetails } from "../../../../services/actions/ingredient-details";
 
-const IngredientDetails = ({ show, item }) => {
+const IngredientDetails = ({ show }) => {
+  const dispatch = useDispatch();
   const onKeyPressHandler = (e) => {
     if (e.keyCode === 27) {
       show(false);
+      dispatch(removeDetails());
     }
   };
 
+  const ingredient = useSelector((state) => state.details.details);
   React.useEffect(() => {
     document.addEventListener("keydown", onKeyPressHandler, false);
     return () => {
@@ -20,9 +25,9 @@ const IngredientDetails = ({ show, item }) => {
   }, []);
   return (
     <Modal show={show} header={"Детали ингридиента"}>
-      <img src={item.image_large} alt={item.name} className="" />
+      <img src={ingredient.image_large} alt={ingredient.name} className="" />
       <div className={style.text_container}>
-        <p className="text text_type_main-medium">{item.name}</p>
+        <p className="text text_type_main-medium">{ingredient.name}</p>
       </div>
       <div className={style.pfc_container}>
         <div className={style.pfc_item}>
@@ -33,7 +38,7 @@ const IngredientDetails = ({ show, item }) => {
           </div>
           <div className={style.calories_text}>
             <p className="text text_type_digits-default text_color_inactive">
-              {item.calories}
+              {ingredient.calories}
             </p>
           </div>
         </div>
@@ -45,7 +50,7 @@ const IngredientDetails = ({ show, item }) => {
           </div>
           <div className={style.text_pfc}>
             <p className="text text_type_digits-default text_color_inactive">
-              {item.proteins}
+              {ingredient.proteins}
             </p>
           </div>
         </div>
@@ -57,7 +62,7 @@ const IngredientDetails = ({ show, item }) => {
           </div>
           <div className={style.text_pfc}>
             <p className="text text_type_digits-default text_color_inactive">
-              {item.fat}
+              {ingredient.fat}
             </p>
           </div>
         </div>
@@ -69,7 +74,7 @@ const IngredientDetails = ({ show, item }) => {
           </div>
           <div className={style.text_pfc}>
             <p className="text text_type_digits-default text_color_inactive">
-              {item.carbohydrates}
+              {ingredient.carbohydrates}
             </p>
           </div>
         </div>

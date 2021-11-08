@@ -1,12 +1,12 @@
-import { POST, REMOVE_DETAILS } from "../actions/order-details";
+import { SET_DETAILS, REMOVE_DETAILS } from "../actions/ingredient-details";
 
 const defaultState = {
-  number: null,
+  details: null,
 };
 
-export const orderDetails = (state = defaultState, action) => {
+export const ingredientDetails = (state = defaultState, action) => {
   switch (action.type) {
-    case POST:
+    case SET_DETAILS:
       return { details: action.payload };
     case REMOVE_DETAILS:
       return { details: null };
