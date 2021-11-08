@@ -6,7 +6,6 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./burger-constructor.module.css";
 import OrderDetails from "./order-details/order-details";
-import { data } from "../../utils/types";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -88,7 +87,7 @@ const BurgerConstructor = () => {
                 return (
                   <ConstructorIngredient
                     key={el.key}
-                    id={el.id}
+                    id={el._id}
                     el={el}
                     index={i}
                   />
@@ -130,7 +129,3 @@ const BurgerConstructor = () => {
 };
 
 export default BurgerConstructor;
-
-BurgerConstructor.propTypes = {
-  items: data,
-};

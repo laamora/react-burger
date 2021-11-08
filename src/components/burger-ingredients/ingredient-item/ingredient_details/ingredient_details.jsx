@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./ingredient_details.module.css";
-import { dataItem } from "../../../../utils/types";
 import Modal from "../../../modal/modal";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
@@ -86,6 +85,5 @@ const IngredientDetails = ({ show }) => {
 export default IngredientDetails;
 
 IngredientDetails.propTypes = {
-  item: dataItem,
   show: PropTypes.func.isRequired,
 };

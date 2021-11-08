@@ -10,6 +10,8 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./constructor-ingredient.module.css";
 import { useDrag, useDrop } from "react-dnd";
+import PropTypes from "prop-types";
+import { dataEl } from "../../../utils/types";
 
 const ConstructorIngredient = ({ id, el, index }) => {
   const dispatch = useDispatch();
@@ -63,3 +65,9 @@ const ConstructorIngredient = ({ id, el, index }) => {
 };
 
 export default ConstructorIngredient;
+
+ConstructorIngredient.propTypes = {
+  id: PropTypes.string.isRequired,
+  el: dataEl,
+  index: PropTypes.number.isRequired,
+};
