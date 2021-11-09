@@ -11,7 +11,7 @@ import {
 import style from "./constructor-ingredient.module.css";
 import { useDrag, useDrop } from "react-dnd";
 import PropTypes from "prop-types";
-import { dataEl } from "../../../utils/types";
+import { dataItem } from "../../../utils/types";
 
 const ConstructorIngredient = ({ id, el, index }) => {
   const dispatch = useDispatch();
@@ -68,6 +68,6 @@ export default ConstructorIngredient;
 
 ConstructorIngredient.propTypes = {
   id: PropTypes.string.isRequired,
-  el: dataEl,
+  el: dataItem,
   index: PropTypes.number.isRequired,
 };

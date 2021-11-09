@@ -9,16 +9,18 @@ import OrderDetails from "./order-details/order-details";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  clearAll,
   setBun,
   setIngredient,
 } from "../../services/actions/burger-constructor";
 import ConstructorIngredient from "./constructor-ingredient/constructor-ingredient";
-import { getNumber } from "../../services/actions/order-details";
+import { getNumber, removeOrder } from "../../services/actions/order-details";
 
 const BurgerConstructor = () => {
   const [details, showDetails] = useState(false);
   const dispatch = useDispatch();
   const bun = useSelector((state) => state.constructors.bun);
+  const success = useSelector((state) => state.order.orderSuccess);
   const ingredients = useSelector((state) => state.constructors?.ingredients);
   const sumTotal = ingredients?.reduce((sum, { price }) => sum + price, 0);
 
@@ -27,6 +29,14 @@ const BurgerConstructor = () => {
     const Ids = [...ingredients.map((item) => item._id), bun._id];
     console.log(Ids);
     dispatch(getNumber(Ids));
+  };
+
+  const handleClose = () => {
+    showDetails(false);
+    dispatch(removeOrder());
+    if (success) {
+      dispatch(clearAll());
+    }
   };
 
   const getFullPrice = () => {
@@ -123,7 +133,7 @@ const BurgerConstructor = () => {
           </Button>
         </div>
       </div>
-      {details && <OrderDetails show={showDetails} />}
+      {details && <OrderDetails show={handleClose} />}
     </>
   );
 };

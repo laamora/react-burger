@@ -3,6 +3,7 @@ import {
   SET_BUN,
   DELETE_INGREDIENT,
   MOVE_INGREDIENTS,
+  CLEAR,
 } from "../actions/burger-constructor";
 
 const defaultState = {
@@ -47,6 +48,8 @@ export const burgerConstructor = (state = defaultState, action) => {
         a = 0;
       }
       return { ...state, bun: action.payload, count: state.count + a };
+    case CLEAR:
+      return { ...state, ingredients: [], count: 0, bun: null };
     default:
       return state;
   }

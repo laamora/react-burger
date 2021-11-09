@@ -4,7 +4,10 @@ import {
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { setDetails } from "../../../services/actions/ingredient-details";
+import {
+  removeDetails,
+  setDetails,
+} from "../../../services/actions/ingredient-details";
 import IngredientDetails from "./ingredient_details/ingredient_details";
 import { dataItem } from "../../../utils/types";
 import { DragPreviewImage, useDrag } from "react-dnd";
@@ -13,6 +16,11 @@ import { useDispatch, useSelector } from "react-redux";
 const IngredientItem = (props) => {
   const [details, showDetails] = useState(false);
   const dispatch = useDispatch();
+
+  const handleClose = () => {
+    showDetails(false);
+    dispatch(removeDetails());
+  };
 
   const { item } = props;
   const [{ isDragging }, dragRef, preview] = useDrag({
@@ -73,7 +81,7 @@ const IngredientItem = (props) => {
           </p>
         </div>
       </div>
-      {details && <IngredientDetails show={showDetails} />}
+      {details && <IngredientDetails show={handleClose} />}
     </>
   );
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./app.module.css";
 import AppHeader from "../app-header/app-header";
-import { dataForConstructor } from "../../utils/dataForConstructor";
 import BurgerIngedients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { DndProvider } from "react-dnd";
@@ -21,7 +20,7 @@ function App() {
             <BurgerIngedients />
           </div>
           <div className={style.App3Container}>
-            <BurgerConstructor items={dataForConstructor} />
+            <BurgerConstructor />
           </div>
         </DndProvider>
       </div>

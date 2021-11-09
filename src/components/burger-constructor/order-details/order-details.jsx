@@ -3,15 +3,12 @@ import style from "./order-details.module.css";
 import img from "../../../images/done.png";
 import Modal from "../../modal/modal";
 import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
-import { removeOrder } from "../../../services/actions/order-details";
+import { useSelector } from "react-redux";
 
 const OrderDetails = ({ show }) => {
-  const dispatch = useDispatch();
   const onKeyPressHandler = (e) => {
     if (e.keyCode === 27) {
-      show(false);
-      dispatch(removeOrder());
+      show();
     }
   };
 

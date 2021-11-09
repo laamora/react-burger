@@ -1,4 +1,4 @@
-import { PRODUCT_URL } from "../../utils/constants";
+import { MAIN_API } from "../../utils/constants";
 
 export const GET_DATA = "GET_DATA";
 export const SET_ERROR = "SET_ERROR";
@@ -23,7 +23,7 @@ export const getData = (payload) => {
 
 export const fetchData = () => {
   return function (dispatch) {
-    fetch(PRODUCT_URL)
+    fetch(`${MAIN_API}/ingredients`)
       .then((res) => res.json())
       .then((data) => dispatch(getData(data)))
       .catch((e) => {

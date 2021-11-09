@@ -9,6 +9,7 @@ const defaultState = {
   orderNumber: null,
   orderRequest: false,
   orderFailed: false,
+  orderSuccess: false,
 };
 
 export const orderDetails = (state = defaultState, action) => {
@@ -22,6 +23,7 @@ export const orderDetails = (state = defaultState, action) => {
     case GET_ORDER_SUCCESS: {
       return {
         ...state,
+        orderSuccess: true,
         orderNumber: action.payload,
         orderRequest: false,
         orderFailed: false,
@@ -40,6 +42,7 @@ export const orderDetails = (state = defaultState, action) => {
         orderNumber: null,
         orderRequest: false,
         orderFailed: false,
+        orderSuccess: false,
       };
     }
     default: {

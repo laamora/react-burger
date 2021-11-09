@@ -1,4 +1,4 @@
-import { POST_API } from "../../utils/constants";
+import { MAIN_API } from "../../utils/constants";
 
 export const GET_ORDER_REQUEST = "GET_ORDER_REQUEST";
 export const GET_ORDER_FAILED = "GET_ORDER_FAILED";
@@ -10,7 +10,7 @@ export const getNumber = (ids) => {
     dispatch({
       type: GET_ORDER_REQUEST,
     });
-    fetch(POST_API, {
+    fetch(`${MAIN_API}/orders`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

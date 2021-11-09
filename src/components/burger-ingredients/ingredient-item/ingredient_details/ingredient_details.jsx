@@ -2,15 +2,12 @@ import React from "react";
 import style from "./ingredient_details.module.css";
 import Modal from "../../../modal/modal";
 import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
-import { removeDetails } from "../../../../services/actions/ingredient-details";
+import { useSelector } from "react-redux";
 
 const IngredientDetails = ({ show }) => {
-  const dispatch = useDispatch();
   const onKeyPressHandler = (e) => {
     if (e.keyCode === 27) {
-      show(false);
-      dispatch(removeDetails());
+      show();
     }
   };
 
