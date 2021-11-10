@@ -5,12 +5,13 @@ import PropTypes from "prop-types";
 
 const modalRoot = document.getElementById("react-modals");
 
-const ModalOverlay = ({ children, show }) => {
+const ModalOverlay = ({ children, onClose }) => {
   const clickHandler = (e) => {
     if (e.target === document.getElementById("ModalOverlay")) {
-      show();
+      onClose();
     }
   };
+
   return ReactDOM.createPortal(
     <div
       className={style.background}
@@ -27,5 +28,5 @@ export default ModalOverlay;
 
 ModalOverlay.propTypes = {
   children: PropTypes.node.isRequired,
-  show: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };

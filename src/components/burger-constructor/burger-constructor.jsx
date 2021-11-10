@@ -31,13 +31,13 @@ const BurgerConstructor = () => {
     dispatch(getNumber(Ids));
   };
 
-  const handleClose = () => {
-    showDetails(false);
-    dispatch(removeOrder());
+  function handleClose() {
     if (success) {
       dispatch(clearAll());
     }
-  };
+    dispatch(removeOrder());
+    showDetails(false);
+  }
 
   const getFullPrice = () => {
     if (bun && ingredients.length > 0) {
@@ -133,7 +133,7 @@ const BurgerConstructor = () => {
           </Button>
         </div>
       </div>
-      {details && <OrderDetails show={handleClose} />}
+      {details && <OrderDetails onClose={handleClose} />}
     </>
   );
 };

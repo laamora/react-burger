@@ -4,23 +4,10 @@ import Modal from "../../../modal/modal";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-const IngredientDetails = ({ show }) => {
-  const onKeyPressHandler = (e) => {
-    if (e.keyCode === 27) {
-      show();
-    }
-  };
-
+const IngredientDetails = ({ onClose }) => {
   const ingredient = useSelector((state) => state.details.details);
-  React.useEffect(() => {
-    document.addEventListener("keydown", onKeyPressHandler, false);
-    return () => {
-      document.removeEventListener("keydown", onKeyPressHandler, false);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   return (
-    <Modal show={show} header={"Детали ингридиента"}>
+    <Modal onClose={onClose} header={"Детали ингридиента"}>
       <img src={ingredient.image_large} alt={ingredient.name} className="" />
       <div className={style.text_container}>
         <p className="text text_type_main-medium">{ingredient.name}</p>
@@ -82,5 +69,5 @@ const IngredientDetails = ({ show }) => {
 export default IngredientDetails;
 
 IngredientDetails.propTypes = {
-  show: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };

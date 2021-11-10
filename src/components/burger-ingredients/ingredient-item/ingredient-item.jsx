@@ -81,7 +81,7 @@ const IngredientItem = (props) => {
           </p>
         </div>
       </div>
-      {details && <IngredientDetails show={handleClose} />}
+      {details && <IngredientDetails onClose={handleClose} />}
     </>
   );
 };

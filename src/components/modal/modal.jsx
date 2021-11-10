@@ -4,12 +4,25 @@ import ModalOverlay from "./modal-overlay/modal-overlay";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 
-const Modal = ({ children, header, show }) => {
+const Modal = ({ children, header, onClose }) => {
   const handleClick = () => {
-    show();
+    onClose();
   };
+  const onKeyPressHandler = (e) => {
+    if (e.keyCode === 27) {
+      onClose();
+    } else return;
+  };
+
+  React.useEffect(() => {
+    document.addEventListener("keydown", onKeyPressHandler, false);
+    return () => {
+      document.removeEventListener("keydown", onKeyPressHandler, false);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
-    <ModalOverlay show={show}>
+    <ModalOverlay onClose={onClose}>
       <div className={style.cart}>
         <div className={style.container}>
           <div className={style.button_container}>
@@ -29,5 +42,5 @@ export default Modal;
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
   header: PropTypes.string,
-  show: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
