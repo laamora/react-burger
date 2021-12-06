@@ -4,6 +4,7 @@ import { burgerIngredients } from "./reducers/burger-ingredients";
 import { burgerConstructor } from "./reducers/burger-constructor";
 import { ingredientDetails } from "./reducers/ingredient-details";
 import { orderDetails } from "./reducers/order-details";
+import { auth } from "./reducers/auth";
 
 const composeEnhancers =
   (process.env.NODE_ENV === "development"
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   constructors: burgerConstructor,
   details: ingredientDetails,
   order: orderDetails,
+  auth: auth,
 });
 
 export const store = createStore(

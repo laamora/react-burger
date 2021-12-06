@@ -1,26 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./ingredient-item.module.css";
 import {
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import {
-  removeDetails,
-  setDetails,
-} from "../../../services/actions/ingredient-details";
-import IngredientDetails from "./ingredient_details/ingredient_details";
+import { setDetails } from "../../../services/actions/ingredient-details";
 import { dataItem } from "../../../utils/types";
 import { DragPreviewImage, useDrag } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const IngredientItem = (props) => {
-  const [details, showDetails] = useState(false);
   const dispatch = useDispatch();
-
-  const handleClose = () => {
-    showDetails(false);
-    dispatch(removeDetails());
-  };
+  const history = useHistory();
 
   const { item } = props;
   const [{ isDragging }, dragRef, preview] = useDrag({
@@ -49,8 +41,12 @@ const IngredientItem = (props) => {
   };
 
   const handleClick = () => {
-    showDetails(true);
+    dispatch({ type: "SHOW_DETAILS" });
     dispatch(setDetails(item));
+    history.push({
+      state: { background: { pathname: "/" } },
+      pathname: `/ingredients/${item._id}`,
+    });
   };
 
   return (
@@ -81,7 +77,6 @@ const IngredientItem = (props) => {
           </p>
         </div>
       </div>
-      {details && <IngredientDetails onClose={handleClose} />}
     </>
   );
 };

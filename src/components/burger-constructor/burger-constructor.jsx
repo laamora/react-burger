@@ -15,6 +15,7 @@ import {
 } from "../../services/actions/burger-constructor";
 import ConstructorIngredient from "./constructor-ingredient/constructor-ingredient";
 import { getNumber, removeOrder } from "../../services/actions/order-details";
+import { isAutenticated } from "../../utils/functions";
 
 const BurgerConstructor = () => {
   const [details, showDetails] = useState(false);
@@ -127,7 +128,7 @@ const BurgerConstructor = () => {
             type="primary"
             size="medium"
             onClick={() => handleClick()}
-            disabled={!bun}
+            disabled={!bun || !isAutenticated()}
           >
             Оформить заказ
           </Button>
