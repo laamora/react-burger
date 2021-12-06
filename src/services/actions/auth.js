@@ -1,16 +1,16 @@
 import { MAIN_API } from "../../utils/constants";
 
-export const GET_FORGOT_REQUEST = "GET_ORDER_REQUEST";
-export const GET_FORGOT_FAILED = "GET_ORDER_FAILED";
-export const GET_FORGOT_SUCCESS = "GET_ORDER_SUCCESS";
+export const GET_FORGOT_REQUEST = "GET_FORGOT_REQUEST";
+export const GET_FORGOT_FAILED = "GET_FORGOT_FAILED";
+export const GET_FORGOT_SUCCESS = "GET_FORGOT_SUCCESS";
 
-export const GET_RESET_REQUEST = "GET_ORDER_REQUEST";
-export const GET_RESET_FAILED = "GET_ORDER_FAILED";
-export const GET_RESET_SUCCESS = "GET_ORDER_SUCCESS";
+export const GET_RESET_REQUEST = "GET_RESET_REQUEST";
+export const GET_RESET_FAILED = "GET_RESET_FAILED";
+export const GET_RESET_SUCCESS = "GET_RESET_SUCCESS";
 
-export const GET_REGISTER_REQUEST = "GET_ORDER_REQUEST";
-export const GET_REGISTER_FAILED = "GET_ORDER_FAILED";
-export const GET_REGISTER_SUCCESS = "GET_ORDER_SUCCESS";
+export const GET_REGISTER_REQUEST = "GET_REGISTER_REQUEST";
+export const GET_REGISTER_FAILED = "GET_REGISTER_REQUEST";
+export const GET_REGISTER_SUCCESS = "GET_REGISTER_REQUEST";
 
 export const AUTH_REQUEST = "AUTH_REQUEST";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
@@ -66,13 +66,15 @@ export const resetPassword = (value) => {
         if (res.ok) return res.json();
         else dispatch({ type: GET_RESET_FAILED });
       })
-      .then((res) => dispatch({ type: GET_RESET_SUCCESS, payload: res }))
+      .then((res) => {
+        dispatch({ type: GET_RESET_SUCCESS, payload: res });
+      })
       .catch(() => dispatch({ type: GET_RESET_FAILED }));
   };
 };
 
 // user part
-export const register = (value) => {
+export const register = (value, history) => {
   console.log(value);
   return (dispatch) => {
     dispatch({
@@ -97,6 +99,7 @@ export const register = (value) => {
         dispatch({ type: GET_REGISTER_SUCCESS, payload: res });
         localStorage.setItem("accessToken", res.accessToken);
         localStorage.setItem("refreshToken", res.refreshToken);
+        history.push("/");
       })
       .catch(() => dispatch({ type: GET_REGISTER_FAILED }));
   };
@@ -220,7 +223,6 @@ export function getUserData() {
           type: GET_USER_SUCCESS,
           payload: result.user,
         });
-        console.log("result.user", result.user);
       })
       .catch(() => {
         dispatch({

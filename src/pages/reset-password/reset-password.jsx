@@ -1,20 +1,29 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import {
   Button,
   Input,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./reset-password.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { resetPassword } from "../../services/actions/auth";
 
 const Reset = () => {
+  const history = useHistory();
   const [value, setValue] = useState({
     password: "",
     token: "",
   });
   const dispatch = useDispatch();
+
+  const isSuccess = useSelector((state) => state.auth.resetSuccess);
+
+  useEffect(() => {
+    if (isSuccess) {
+      history.replace({ pathname: "/login" });
+    }
+  }, [isSuccess, history]);
 
   return (
     <div className={style.Container}>
@@ -41,7 +50,7 @@ const Reset = () => {
           <Button
             type="primary"
             size="medium"
-            onClick={dispatch(resetPassword(value))}
+            onClick={() => dispatch(resetPassword(value))}
           >
             Сохранить
           </Button>

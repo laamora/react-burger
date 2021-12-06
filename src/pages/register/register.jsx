@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   Button,
   Input,
@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { register } from "../../services/actions/auth";
 
 const Register = () => {
+  const history = useHistory();
   const [value, setValue] = useState({
     name: "",
     password: "",
@@ -49,7 +50,7 @@ const Register = () => {
           <Button
             type="primary"
             size="medium"
-            onClick={() => dispatch(register(value))}
+            onClick={() => dispatch(register(value, history))}
           >
             Зарегистрироваться
           </Button>
