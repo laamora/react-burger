@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const LoggetProtect = ({ children, ...rest }) => {
+const LoggedProtect = ({ children, ...rest }) => {
   const isTokenExpired = () => {
     const accessToken = localStorage.getItem("accessToken");
 
@@ -37,7 +37,7 @@ const LoggetProtect = ({ children, ...rest }) => {
     />
   );
 };
-export default LoggetProtect;
-LoggetProtect.propTypes = {
+export default LoggedProtect;
+LoggedProtect.propTypes = {
   children: PropTypes.element.isRequired,
 };

@@ -18,10 +18,15 @@ const Register = () => {
   });
   const dispatch = useDispatch();
 
+  const submit = (e) => {
+    e.preventDefault();
+    dispatch(register(value, history));
+  };
+
   return (
     <div className={style.Container}>
       <div className={style.Container2}>
-        <div className={style.Container3}>
+        <form className={style.Container3} onSubmit={submit}>
           <h2 className={"text text_type_main-medium"}>Регистрация</h2>
           <Input
             type={"text"}
@@ -47,14 +52,10 @@ const Register = () => {
             name={"password"}
             onChange={(e) => setValue({ ...value, password: e.target.value })}
           />
-          <Button
-            type="primary"
-            size="medium"
-            onClick={() => dispatch(register(value, history))}
-          >
+          <Button type="primary" size="medium">
             Зарегистрироваться
           </Button>
-        </div>
+        </form>
         <div className={style.Container4}>
           <span className={"text text_type_main-default text_color_inactive"}>
             Уже зарегистрированы?{" "}

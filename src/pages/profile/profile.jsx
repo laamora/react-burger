@@ -36,7 +36,8 @@ const Profile = () => {
     setChanged(false);
   };
 
-  const changeUser = () => {
+  const submit = (e) => {
+    e.preventDefault();
     dispatch(
       changeUserData({
         name: user.name,
@@ -45,6 +46,7 @@ const Profile = () => {
       })
     );
   };
+
   return (
     <div className={style.profile}>
       <div className={style.text_container}>
@@ -81,7 +83,7 @@ const Profile = () => {
       </div>
       <Switch>
         <Route path="/profile" exact={true}>
-          <div className={style.profile_container}>
+          <form className={style.profile_container} onSubmit={submit}>
             <Input
               type={"text"}
               placeholder={"Имя"}
@@ -120,10 +122,10 @@ const Profile = () => {
                 >
                   Отмена
                 </p>
-                <Button onClick={() => changeUser()}>Сохранить</Button>
+                <Button>Сохранить</Button>
               </div>
             )}
-          </div>
+          </form>
         </Route>
         <Route path="/profile/orders" exact={true}></Route>
         <Route path="/pofile/orders/:id" exact={true}></Route>

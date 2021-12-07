@@ -8,10 +8,13 @@ import Reset from "../../pages/reset-password/reset-password";
 import Ingredients from "../../pages/ingredients/ingredients";
 import Profile from "../../pages/profile/profile";
 import ProtectedRoute from "../protected-route/protected-route";
-import LoggetProtect from "../logget-protect/logget-protect";
+import LoggedProtect from "../logged-protect/logged-protect";
 import ResetProtect from "../reset-protect/reset-protect";
-import { useDispatch, useSelector } from "react-redux";
-import { removeDetails } from "../../services/actions/ingredient-details";
+import { useDispatch } from "react-redux";
+import {
+  CLOSE_DETAILS,
+  removeDetails,
+} from "../../services/actions/ingredient-details";
 import IngredientDetails from "../burger-ingredients/ingredient-item/ingredient_details/ingredient_details";
 
 const AppBody = () => {
@@ -20,27 +23,28 @@ const AppBody = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { show } = useSelector((state) => state.details);
   const handleClose = () => {
-    dispatch({ type: "CLOSE_DETAILS" });
+    dispatch({ type: CLOSE_DETAILS });
     dispatch(removeDetails());
+    localStorage.removeItem("show");
     history.replace("/");
   };
+
   return (
     <main>
       <Switch location={background ?? location}>
         <Route exact path="/">
           <Constructor />
         </Route>
-        <LoggetProtect exact path="/login">
+        <LoggedProtect exact path="/login">
           <Login />
-        </LoggetProtect>
-        <LoggetProtect exact path="/register">
+        </LoggedProtect>
+        <LoggedProtect exact path="/register">
           <Register />
-        </LoggetProtect>
-        <LoggetProtect exact path="/forgot-password">
+        </LoggedProtect>
+        <LoggedProtect exact path="/forgot-password">
           <Forgot />
-        </LoggetProtect>
+        </LoggedProtect>
         <ResetProtect exact path="/reset-password">
           <Reset />
         </ResetProtect>
@@ -54,7 +58,7 @@ const AppBody = () => {
       </Switch>
       {background && (
         <Route path="/ingredients/:id">
-          {show && <IngredientDetails onClose={handleClose} />}
+          <IngredientDetails onClose={handleClose} />
         </Route>
       )}
     </main>

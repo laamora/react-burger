@@ -41,7 +41,6 @@ const IngredientItem = (props) => {
   };
 
   const handleClick = () => {
-    dispatch({ type: "SHOW_DETAILS" });
     dispatch(setDetails(item));
     history.push({
       state: { background: { pathname: "/" } },

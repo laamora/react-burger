@@ -16,6 +16,7 @@ import {
 import ConstructorIngredient from "./constructor-ingredient/constructor-ingredient";
 import { getNumber, removeOrder } from "../../services/actions/order-details";
 import { isAutenticated } from "../../utils/functions";
+import { useHistory } from "react-router";
 
 const BurgerConstructor = () => {
   const [details, showDetails] = useState(false);
@@ -24,12 +25,17 @@ const BurgerConstructor = () => {
   const success = useSelector((state) => state.order.orderSuccess);
   const ingredients = useSelector((state) => state.constructors?.ingredients);
   const sumTotal = ingredients?.reduce((sum, { price }) => sum + price, 0);
+  const history = useHistory();
 
   const handleClick = () => {
-    showDetails(true);
-    const Ids = [...ingredients.map((item) => item._id), bun._id];
-    console.log(Ids);
-    dispatch(getNumber(Ids));
+    if (!isAutenticated()) {
+      history.replace("/login");
+    } else {
+      showDetails(true);
+      const Ids = [...ingredients.map((item) => item._id), bun._id];
+      console.log(Ids);
+      dispatch(getNumber(Ids));
+    }
   };
 
   function handleClose() {
@@ -128,7 +134,7 @@ const BurgerConstructor = () => {
             type="primary"
             size="medium"
             onClick={() => handleClick()}
-            disabled={!bun || !isAutenticated()}
+            disabled={!bun}
           >
             Оформить заказ
           </Button>

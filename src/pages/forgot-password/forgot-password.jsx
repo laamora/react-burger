@@ -20,7 +20,8 @@ const Forgot = () => {
     }
   }, [isSuccess, history]);
 
-  const click = () => {
+  const submit = (e) => {
+    e.preventDefault();
     dispatch(forgotPassword(value));
   };
 
@@ -31,7 +32,7 @@ const Forgot = () => {
   return (
     <div className={style.Container}>
       <div className={style.Container2}>
-        <div className={style.Container3}>
+        <form className={style.Container3} onSubmit={submit}>
           <h2 className={"text text_type_main-medium"}>
             Восстановление пароля
           </h2>
@@ -45,10 +46,10 @@ const Forgot = () => {
             size={"default"}
             onChange={(e) => changeHandler(e)}
           />
-          <Button type="primary" size="medium" onClick={click}>
+          <Button type="primary" size="medium">
             Восстановить
           </Button>
-        </div>
+        </form>
         <div className={style.Container4}>
           <span className={"text text_type_main-default text_color_inactive"}>
             Вспомнили пароль?{" "}

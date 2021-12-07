@@ -25,10 +25,15 @@ const Reset = () => {
     }
   }, [isSuccess, history]);
 
+  const submit = (e) => {
+    e.preventDefault();
+    dispatch(resetPassword(value));
+  };
+
   return (
     <div className={style.Container}>
       <div className={style.Container2}>
-        <div className={style.Container3}>
+        <form className={style.Container3} onSubmit={submit}>
           <h2 className={"text text_type_main-medium"}>
             Восстановление пароля
           </h2>
@@ -47,14 +52,10 @@ const Reset = () => {
             size={"default"}
             onChange={(e) => setValue({ ...value, token: e.target.value })}
           />
-          <Button
-            type="primary"
-            size="medium"
-            onClick={() => dispatch(resetPassword(value))}
-          >
+          <Button type="primary" size="medium">
             Сохранить
           </Button>
-        </div>
+        </form>
         <div className={style.Container4}>
           <span className={"text text_type_main-default text_color_inactive"}>
             Вспомнили пароль?{" "}

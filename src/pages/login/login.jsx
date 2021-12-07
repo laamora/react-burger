@@ -17,10 +17,21 @@ const Login = () => {
   });
   const dispatch = useDispatch();
 
+  const submit = (e) => {
+    e.preventDefault();
+    dispatch(
+      login({
+        email: value.email,
+        password: value.password,
+        history: history,
+      })
+    );
+  };
+
   return (
     <div className={style.Container}>
       <div className={style.Container2}>
-        <div className={style.Container3}>
+        <form className={style.Container3} onSubmit={submit}>
           <h2 className={"text text_type_main-medium"}>Вход</h2>
           <Input
             type={"text"}
@@ -32,22 +43,10 @@ const Login = () => {
             name={"password"}
             onChange={(e) => setValue({ ...value, password: e.target.value })}
           />
-          <Button
-            type="primary"
-            size="medium"
-            onClick={() =>
-              dispatch(
-                login({
-                  email: value.email,
-                  password: value.password,
-                  history: history,
-                })
-              )
-            }
-          >
+          <Button type="primary" size="medium">
             Войти
           </Button>
-        </div>
+        </form>
         <div className={style.Container4}>
           <span className={"text text_type_main-default text_color_inactive"}>
             Вы — новый пользователь?{" "}

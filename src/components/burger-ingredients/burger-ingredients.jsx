@@ -1,16 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import style from "./burger-ingredients.module.css";
 import BurgerMenu from "./burger-menu/burger-menu";
 import IngredientItem from "./ingredient-item/ingredient-item.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../../services/actions/burger-ingredients";
+import { useSelector } from "react-redux";
 
 function BurgerIngedients() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchData());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   const ingredients = useSelector((state) => state.ingredients?.ingredients);
 
   const tabsRef = useRef();
