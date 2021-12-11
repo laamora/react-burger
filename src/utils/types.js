@@ -13,6 +13,7 @@ export const dataItem = PropTypes.shape({
   image_mobile: PropTypes.string.isRequired,
   image_large: PropTypes.string.isRequired,
   __v: PropTypes.number.isRequired,
+  key: PropTypes.number,
 }).isRequired;
 
 export const data = PropTypes.arrayOf(dataItem).isRequired;

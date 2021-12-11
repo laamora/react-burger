@@ -1,17 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import style from "./modal-overlay.module.css";
+import PropTypes from "prop-types";
+import { useHistory } from "react-router";
 
 const modalRoot = document.getElementById("react-modals");
 
-const ModalOverlay = ({ children, show }) => {
+const ModalOverlay = ({ children, onClose }) => {
+  const history = useHistory();
   const clickHandler = (e) => {
     if (e.target === document.getElementById("ModalOverlay")) {
-      console.log("e.target", e.target);
-      console.log("e.currentTarget", e.currentTarget);
-      show(false);
+      onClose();
+      history.replace("/");
     }
   };
+
   return ReactDOM.createPortal(
     <div
       className={style.background}
@@ -25,3 +28,8 @@ const ModalOverlay = ({ children, show }) => {
 };
 
 export default ModalOverlay;
+
+ModalOverlay.propTypes = {
+  children: PropTypes.node.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
