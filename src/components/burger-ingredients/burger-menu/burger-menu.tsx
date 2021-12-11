@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 // import style from "./burger-menu.module.css";
-import PropTypes from "prop-types";
 
-const BurgerMenu = ({ currentTab }) => {
-  const [current, setCurrent] = useState();
+interface BurgerMenuProps {
+  currentTab: string;
+}
+
+const BurgerMenu = ({ currentTab }: BurgerMenuProps) => {
+  const [current, setCurrent] = useState<string | undefined>();
 
   useEffect(() => {
     setCurrent(currentTab);
@@ -26,7 +29,3 @@ const BurgerMenu = ({ currentTab }) => {
 };
 
 export default BurgerMenu;
-
-BurgerMenu.propTypes = {
-  currentTab: PropTypes.string.isRequired,
-};

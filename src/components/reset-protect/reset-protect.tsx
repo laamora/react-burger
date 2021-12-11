@@ -1,9 +1,15 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+import { RooteReducer } from "../../services/reducers/interface";
 
-const ResetProtect = ({ children, ...rest }) => {
+interface ResetProtectProps {
+  children: React.ReactNode;
+  exact: boolean;
+  path: string;
+}
+
+const ResetProtect = ({ children, ...rest }: ResetProtectProps) => {
   const isTokenExpired = () => {
     const accessToken = localStorage.getItem("accessToken");
 
@@ -13,7 +19,7 @@ const ResetProtect = ({ children, ...rest }) => {
     }
   };
 
-  const parseJwtToken = (token) => {
+  const parseJwtToken = (token: string) => {
     try {
       return JSON.parse(atob(token.split(".")[1]));
     } catch (error) {
@@ -25,7 +31,9 @@ const ResetProtect = ({ children, ...rest }) => {
     return localStorage.getItem("accessToken") && !isTokenExpired();
   }
 
-  const isForgotSuccess = useSelector((state) => state.auth.forgotSuccess);
+  const isForgotSuccess = useSelector(
+    (state: RooteReducer) => state.auth.forgotSuccess
+  );
 
   return (
     <Route
@@ -41,6 +49,3 @@ const ResetProtect = ({ children, ...rest }) => {
   );
 };
 export default ResetProtect;
-ResetProtect.propTypes = {
-  children: PropTypes.element.isRequired,
-};

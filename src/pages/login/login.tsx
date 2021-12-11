@@ -17,7 +17,7 @@ const Login = () => {
   });
   const dispatch = useDispatch();
 
-  const submit = (e) => {
+  const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(
       login({
@@ -34,12 +34,14 @@ const Login = () => {
         <form className={style.Container3} onSubmit={submit}>
           <h2 className={"text text_type_main-medium"}>Вход</h2>
           <Input
+            value={value.email}
             type={"text"}
             placeholder={"E-mail"}
             size={"default"}
             onChange={(e) => setValue({ ...value, email: e.target.value })}
           />
           <PasswordInput
+            value={value.password}
             name={"password"}
             onChange={(e) => setValue({ ...value, password: e.target.value })}
           />

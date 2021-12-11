@@ -3,31 +3,33 @@ import { Link, useHistory } from "react-router-dom";
 import {
   Button,
   Input,
-  PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import style from "./reset-password.module.css";
+import style from "./forgot-password.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { resetPassword } from "../../services/actions/auth";
+import { forgotPassword } from "../../services/actions/auth";
+import { RooteReducer } from "../../services/reducers/interface";
 
-const Reset = () => {
-  const history = useHistory();
-  const [value, setValue] = useState({
-    password: "",
-    token: "",
-  });
+const Forgot = () => {
+  const [value, setValue] = useState("");
   const dispatch = useDispatch();
-
-  const isSuccess = useSelector((state) => state.auth.resetSuccess);
+  const history = useHistory();
+  const isSuccess = useSelector(
+    (state: RooteReducer) => state.auth.forgotSuccess
+  );
 
   useEffect(() => {
     if (isSuccess) {
-      history.replace({ pathname: "/login" });
+      history.replace({ pathname: "/reset-password" });
     }
   }, [isSuccess, history]);
 
-  const submit = (e) => {
+  const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(resetPassword(value));
+    dispatch(forgotPassword(value));
+  };
+
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.name === "forgot" && setValue(e.target.value);
   };
 
   return (
@@ -37,23 +39,18 @@ const Reset = () => {
           <h2 className={"text text_type_main-medium"}>
             Восстановление пароля
           </h2>
-          <PasswordInput
-            name={"password"}
-            placeholder={"Введите новый пароль"}
-            onChange={(e) => setValue({ ...value, password: e.target.value })}
-          />
           <Input
             type={"text"}
-            placeholder={"Введите код из письма"}
-            name={"reset"}
+            placeholder={"Укажите E-mail"}
+            value={value}
+            name={"forgot"}
             error={false}
             errorText={"Ошибка"}
-            value={value.token}
             size={"default"}
-            onChange={(e) => setValue({ ...value, token: e.target.value })}
+            onChange={(e) => changeHandler(e)}
           />
           <Button type="primary" size="medium">
-            Сохранить
+            Восстановить
           </Button>
         </form>
         <div className={style.Container4}>
@@ -69,4 +66,4 @@ const Reset = () => {
   );
 };
 
-export default Reset;
+export default Forgot;

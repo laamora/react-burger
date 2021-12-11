@@ -8,6 +8,7 @@ import {
 import style from "./profile.module.css";
 import { changeUserData, logout } from "../../services/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
+import { RooteReducer } from "../../services/reducers/interface";
 
 const Profile = () => {
   const [user, setUser] = useState({
@@ -21,7 +22,7 @@ const Profile = () => {
   const onChange = () => {
     setChanged(true);
   };
-  const userData = useSelector((state) => state.auth.user);
+  const userData = useSelector((state: RooteReducer) => state.auth.user);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -36,7 +37,7 @@ const Profile = () => {
     setChanged(false);
   };
 
-  const submit = (e) => {
+  const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(
       changeUserData({

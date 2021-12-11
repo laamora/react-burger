@@ -10,16 +10,45 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./constructor-ingredient.module.css";
 import { useDrag, useDrop } from "react-dnd";
-import PropTypes from "prop-types";
-import { dataItem } from "../../../utils/types";
 
-const ConstructorIngredient = ({ id, el, index }) => {
+interface ElType {
+  _id: string;
+  name: string;
+  type: string;
+  proteins: number;
+  fat: number;
+  carbohydrates: number;
+  calories: number;
+  price: number;
+  image: string;
+  image_mobile: string;
+  image_large: string;
+  __v: number;
+  key: any;
+}
+
+interface ItemType {
+  index: any;
+  id: any;
+}
+
+interface ConstructorIngredientProps {
+  id: string;
+  index: number;
+  el: ElType;
+}
+
+const ConstructorIngredient = ({
+  id,
+  el,
+  index,
+}: ConstructorIngredientProps) => {
   const dispatch = useDispatch();
 
-  const ref = useRef(null);
+  const ref = useRef<any>(null);
   const [, drop] = useDrop({
     accept: "item",
-    hover: (item, monitor) => {
+    hover: (item: ItemType, monitor: any) => {
       if (!ref.current) return;
       const dragIndex = item.index;
       const hoverIndex = index;
@@ -65,9 +94,3 @@ const ConstructorIngredient = ({ id, el, index }) => {
 };
 
 export default ConstructorIngredient;
-
-ConstructorIngredient.propTypes = {
-  id: PropTypes.string.isRequired,
-  el: dataItem,
-  index: PropTypes.number.isRequired,
-};

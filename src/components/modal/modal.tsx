@@ -2,14 +2,20 @@ import React from "react";
 import style from "./modal.module.css";
 import ModalOverlay from "./modal-overlay/modal-overlay";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 
-const Modal = ({ children, header, onClose }) => {
+interface ModalProps {
+  children: React.ReactNode;
+  onClose: () => void;
+  header?: string | undefined;
+}
+
+const Modal = ({ children, header, onClose }: ModalProps) => {
   const handleClick = () => {
     onClose();
   };
-  const onKeyPressHandler = (e) => {
-    if (e.keyCode === 27) {
+
+  const onKeyPressHandler = (evt: KeyboardEvent) => {
+    if (evt.key === "Escape") {
       onClose();
     } else return;
   };
@@ -38,9 +44,3 @@ const Modal = ({ children, header, onClose }) => {
 };
 
 export default Modal;
-
-Modal.propTypes = {
-  children: PropTypes.node.isRequired,
-  header: PropTypes.string,
-  onClose: PropTypes.func.isRequired,
-};

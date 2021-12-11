@@ -18,7 +18,7 @@ const Register = () => {
   });
   const dispatch = useDispatch();
 
-  const submit = (e) => {
+  const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(register(value, history));
   };
@@ -49,6 +49,7 @@ const Register = () => {
             onChange={(e) => setValue({ ...value, email: e.target.value })}
           />
           <PasswordInput
+            value={value.password}
             name={"password"}
             onChange={(e) => setValue({ ...value, password: e.target.value })}
           />

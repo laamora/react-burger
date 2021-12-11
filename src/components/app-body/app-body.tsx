@@ -18,7 +18,7 @@ import {
 import IngredientDetails from "../burger-ingredients/ingredient-item/ingredient_details/ingredient_details";
 
 const AppBody = () => {
-  const location = useLocation();
+  const location = useLocation<any>();
   const background = location.state?.background;
   const dispatch = useDispatch();
   const history = useHistory();

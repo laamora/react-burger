@@ -5,16 +5,35 @@ import {
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { setDetails } from "../../../services/actions/ingredient-details";
-import { dataItem } from "../../../utils/types";
 import { DragPreviewImage, useDrag } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { RooteReducer } from "../../../services/reducers/interface";
 
-const IngredientItem = (props) => {
+interface ItemType {
+  _id: string;
+  name: string;
+  type: string;
+  proteins: number;
+  fat: number;
+  carbohydrates: number;
+  calories: number;
+  price: number;
+  image: string;
+  image_mobile: string;
+  image_large: string;
+  __v: number;
+  key: any;
+}
+
+interface IngredientItemProps {
+  item: ItemType;
+}
+
+const IngredientItem = ({ item }: IngredientItemProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { item } = props;
   const [{ isDragging }, dragRef, preview] = useDrag({
     type: "ingredient",
     item: { ...item },
@@ -24,7 +43,7 @@ const IngredientItem = (props) => {
   });
   const opacity = isDragging ? 0.5 : 1;
 
-  const ingredients = useSelector((state) => state.constructors);
+  const ingredients = useSelector((state: RooteReducer) => state.constructors);
   const itemCount = () => {
     if (
       item.type === "bun" &&
@@ -50,21 +69,20 @@ const IngredientItem = (props) => {
 
   return (
     <>
-      <DragPreviewImage connect={preview} src={props.item.image} />
+      <DragPreviewImage connect={preview} src={item.image} />
       <div className={style.cart} ref={dragRef} style={{ ...style, opacity }}>
         <img
-          src={props.item.image}
+          src={item.image}
           className={style.image}
-          alt={props.item.name}
+          alt={item.name}
           onClick={() => handleClick()}
         />
         <div className={style.count}>
+          {/*@ts-ignore*/}
           {itemCount() && <Counter count={itemCount()} size="default" />}
         </div>
         <div className={style.price}>
-          <p className="text text_type_digits-default mr-3">
-            {props.item.price}
-          </p>
+          <p className="text text_type_digits-default mr-3">{item.price}</p>
           <CurrencyIcon type="primary" />
         </div>
         <div className={style.name}>
@@ -72,7 +90,7 @@ const IngredientItem = (props) => {
             className="text text_type_main-default"
             style={{ height: "48px", textAlign: "center" }}
           >
-            {props.item.name}
+            {item.name}
           </p>
         </div>
       </div>
@@ -81,7 +99,3 @@ const IngredientItem = (props) => {
 };
 
 export default IngredientItem;
-
-IngredientItem.propTypes = {
-  item: dataItem,
-};
