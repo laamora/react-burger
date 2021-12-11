@@ -7,7 +7,7 @@ const isTokenExpired = () => {
   }
 };
 
-const parseJwtToken = (token) => {
+const parseJwtToken = (token: string) => {
   try {
     return JSON.parse(atob(token.split(".")[1]));
   } catch (error) {
