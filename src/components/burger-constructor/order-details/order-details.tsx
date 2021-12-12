@@ -2,11 +2,15 @@ import React from "react";
 import style from "./order-details.module.css";
 import img from "../../../images/done.png";
 import Modal from "../../modal/modal";
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+import { RooteReducer } from "../../../services/reducers/interface";
 
-const OrderDetails = ({ onClose }) => {
-  const number = useSelector((state) => state.order.orderNumber);
+interface OrderDetailsProps {
+  onClose: () => void;
+}
+
+const OrderDetails = ({ onClose }: OrderDetailsProps) => {
+  const number = useSelector((state: RooteReducer) => state.order.orderNumber);
   return (
     <Modal onClose={onClose}>
       <div className={style.text_container}>
@@ -29,7 +33,3 @@ const OrderDetails = ({ onClose }) => {
 };
 
 export default OrderDetails;
-
-OrderDetails.propTypes = {
-  onClose: PropTypes.func.isRequired,
-};

@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import style from "./ingredient_details.module.css";
 import Modal from "../../../modal/modal";
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { RooteReducer } from "../../../../services/reducers/interface";
+import { IngredientItemType } from "../../../../utils/interface";
 
-const IngredientDetails = ({ onClose }) => {
-  const [ingredient, setIngredient] = useState();
-  const { id } = useParams();
-  const data = useSelector((state) => state.ingredients?.ingredients);
+interface IngredientDetailsProps {
+  onClose: () => void;
+}
+
+const IngredientDetails = ({ onClose }: IngredientDetailsProps) => {
+  const [ingredient, setIngredient] =
+    useState<IngredientItemType | undefined>();
+  const { id } = useParams<any>();
+  const data = useSelector(
+    (state: RooteReducer) => state.ingredients?.ingredients
+  );
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setIngredient(data && data.find((item) => item._id === `${id}`));
@@ -82,7 +90,3 @@ const IngredientDetails = ({ onClose }) => {
 };
 
 export default IngredientDetails;
-
-IngredientDetails.propTypes = {
-  onClose: PropTypes.func.isRequired,
-};

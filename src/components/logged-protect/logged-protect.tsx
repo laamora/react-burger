@@ -1,8 +1,13 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import PropTypes from "prop-types";
 
-const LoggedProtect = ({ children, ...rest }) => {
+interface LoggedProtectProps {
+  children: React.ReactNode;
+  exact: boolean;
+  path: string;
+}
+
+const LoggedProtect = ({ children, ...rest }: LoggedProtectProps) => {
   const isTokenExpired = () => {
     const accessToken = localStorage.getItem("accessToken");
 
@@ -12,7 +17,7 @@ const LoggedProtect = ({ children, ...rest }) => {
     }
   };
 
-  const parseJwtToken = (token) => {
+  const parseJwtToken = (token: string) => {
     try {
       return JSON.parse(atob(token.split(".")[1]));
     } catch (error) {
@@ -38,6 +43,3 @@ const LoggedProtect = ({ children, ...rest }) => {
   );
 };
 export default LoggedProtect;
-LoggedProtect.propTypes = {
-  children: PropTypes.element.isRequired,
-};

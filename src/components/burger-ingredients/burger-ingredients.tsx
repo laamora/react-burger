@@ -1,28 +1,31 @@
 import React, { useRef, useState } from "react";
 import style from "./burger-ingredients.module.css";
 import BurgerMenu from "./burger-menu/burger-menu";
-import IngredientItem from "./ingredient-item/ingredient-item.jsx";
+import IngredientItem from "./ingredient-item/ingredient-item";
 import { useSelector } from "react-redux";
+import { RooteReducer } from "../../services/reducers/interface";
 
 function BurgerIngedients() {
-  const ingredients = useSelector((state) => state.ingredients?.ingredients);
+  const ingredients = useSelector(
+    (state: RooteReducer) => state.ingredients?.ingredients
+  );
 
-  const tabsRef = useRef();
-  const bunsRef = useRef();
-  const saucesRef = useRef();
-  const mainsRef = useRef();
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const bunsRef = useRef<HTMLDivElement>(null);
+  const saucesRef = useRef<HTMLDivElement>(null);
+  const mainsRef = useRef<HTMLDivElement>(null);
   const [currentTab, setCurrentTab] = useState("bun");
 
   const checkActualTab = () => {
-    const tabsTop = tabsRef.current.getBoundingClientRect().top;
+    const tabsTop = tabsRef.current?.getBoundingClientRect().top;
     const bunsDistance = Math.abs(
-      tabsTop - bunsRef.current.getBoundingClientRect().top
+      tabsTop! - bunsRef.current!.getBoundingClientRect().top
     );
     const saucesDistance = Math.abs(
-      tabsTop - saucesRef.current.getBoundingClientRect().top
+      tabsTop! - saucesRef.current!.getBoundingClientRect().top
     );
     const mainsDistance = Math.abs(
-      tabsTop - mainsRef.current.getBoundingClientRect().top
+      tabsTop! - mainsRef.current!.getBoundingClientRect().top
     );
     const minValue = Math.min(bunsDistance, saucesDistance, mainsDistance);
     if (minValue === bunsDistance) {

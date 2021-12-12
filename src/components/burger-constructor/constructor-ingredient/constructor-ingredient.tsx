@@ -10,16 +10,30 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./constructor-ingredient.module.css";
 import { useDrag, useDrop } from "react-dnd";
-import PropTypes from "prop-types";
-import { dataItem } from "../../../utils/types";
+import { IngredientItemType } from "../../../utils/interface";
 
-const ConstructorIngredient = ({ id, el, index }) => {
+interface ItemType {
+  index: number;
+  id: string;
+}
+
+interface ConstructorIngredientProps {
+  id: string;
+  index: number;
+  el: IngredientItemType;
+}
+
+const ConstructorIngredient = ({
+  id,
+  el,
+  index,
+}: ConstructorIngredientProps) => {
   const dispatch = useDispatch();
 
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const [, drop] = useDrop({
     accept: "item",
-    hover: (item, monitor) => {
+    hover: (item: ItemType, monitor: any) => {
       if (!ref.current) return;
       const dragIndex = item.index;
       const hoverIndex = index;
@@ -65,9 +79,3 @@ const ConstructorIngredient = ({ id, el, index }) => {
 };
 
 export default ConstructorIngredient;
-
-ConstructorIngredient.propTypes = {
-  id: PropTypes.string.isRequired,
-  el: dataItem,
-  index: PropTypes.number.isRequired,
-};

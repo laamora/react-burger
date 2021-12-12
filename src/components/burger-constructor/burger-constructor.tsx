@@ -5,7 +5,6 @@ import {
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./burger-constructor.module.css";
-import OrderDetails from "./order-details/order-details";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,13 +16,20 @@ import ConstructorIngredient from "./constructor-ingredient/constructor-ingredie
 import { getNumber, removeOrder } from "../../services/actions/order-details";
 import { isAutenticated } from "../../utils/functions";
 import { useHistory } from "react-router";
+import { RooteReducer } from "../../services/reducers/interface";
+import OrderDetails from "./order-details/order-details";
+import { IngredientItemType } from "../../utils/interface";
 
 const BurgerConstructor = () => {
   const [details, showDetails] = useState(false);
   const dispatch = useDispatch();
-  const bun = useSelector((state) => state.constructors.bun);
-  const success = useSelector((state) => state.order.orderSuccess);
-  const ingredients = useSelector((state) => state.constructors?.ingredients);
+  const bun = useSelector((state: RooteReducer) => state.constructors.bun);
+  const success = useSelector(
+    (state: RooteReducer) => state.order.orderSuccess
+  );
+  const ingredients = useSelector(
+    (state: RooteReducer) => state.constructors?.ingredients
+  );
   const sumTotal = ingredients?.reduce((sum, { price }) => sum + price, 0);
   const history = useHistory();
 
@@ -32,7 +38,7 @@ const BurgerConstructor = () => {
       history.replace("/login");
     } else {
       showDetails(true);
-      const Ids = [...ingredients.map((item) => item._id), bun._id];
+      const Ids = [...ingredients.map((item) => item._id), bun!._id];
       console.log(Ids);
       dispatch(getNumber(Ids));
     }
@@ -61,7 +67,7 @@ const BurgerConstructor = () => {
   const [, dropRef] = useDrop(
     {
       accept: "ingredient",
-      drop(item) {
+      drop(item: IngredientItemType) {
         if (item.type === "bun") {
           dispatch(setBun(item));
         } else {
@@ -134,6 +140,7 @@ const BurgerConstructor = () => {
             type="primary"
             size="medium"
             onClick={() => handleClick()}
+            //@ts-ignore
             disabled={!bun}
           >
             Оформить заказ

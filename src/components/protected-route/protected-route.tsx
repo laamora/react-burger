@@ -1,8 +1,12 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import PropTypes from "prop-types";
 
-const ProtectedRoute = ({ children, ...rest }) => {
+interface ProtectedRouteProps {
+  children: React.ReactNode;
+  path: string;
+}
+
+const ProtectedRoute = ({ children, ...rest }: ProtectedRouteProps) => {
   const isTokenExpired = () => {
     const accessToken = localStorage.getItem("accessToken");
 
@@ -12,7 +16,7 @@ const ProtectedRoute = ({ children, ...rest }) => {
     }
   };
 
-  const parseJwtToken = (token) => {
+  const parseJwtToken = (token: string) => {
     try {
       return JSON.parse(atob(token.split(".")[1]));
     } catch (error) {
@@ -38,6 +42,3 @@ const ProtectedRoute = ({ children, ...rest }) => {
   );
 };
 export default ProtectedRoute;
-ProtectedRoute.propTypes = {
-  children: PropTypes.element.isRequired,
-};
