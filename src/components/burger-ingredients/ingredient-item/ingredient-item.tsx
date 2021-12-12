@@ -9,25 +9,10 @@ import { DragPreviewImage, useDrag } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { RooteReducer } from "../../../services/reducers/interface";
-
-interface ItemType {
-  _id: string;
-  name: string;
-  type: string;
-  proteins: number;
-  fat: number;
-  carbohydrates: number;
-  calories: number;
-  price: number;
-  image: string;
-  image_mobile: string;
-  image_large: string;
-  __v: number;
-  key: any;
-}
+import { IngredientItemType } from "../../../utils/interface";
 
 interface IngredientItemProps {
-  item: ItemType;
+  item: IngredientItemType;
 }
 
 const IngredientItem = ({ item }: IngredientItemProps) => {

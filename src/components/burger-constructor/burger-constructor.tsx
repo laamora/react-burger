@@ -18,22 +18,7 @@ import { isAutenticated } from "../../utils/functions";
 import { useHistory } from "react-router";
 import { RooteReducer } from "../../services/reducers/interface";
 import OrderDetails from "./order-details/order-details";
-
-interface ItemType {
-  _id: string;
-  name: string;
-  type: string;
-  proteins: number;
-  fat: number;
-  carbohydrates: number;
-  calories: number;
-  price: number;
-  image: string;
-  image_mobile: string;
-  image_large: string;
-  __v: number;
-  key: any;
-}
+import { IngredientItemType } from "../../utils/interface";
 
 const BurgerConstructor = () => {
   const [details, showDetails] = useState(false);
@@ -82,7 +67,7 @@ const BurgerConstructor = () => {
   const [, dropRef] = useDrop(
     {
       accept: "ingredient",
-      drop(item: ItemType) {
+      drop(item: IngredientItemType) {
         if (item.type === "bun") {
           dispatch(setBun(item));
         } else {

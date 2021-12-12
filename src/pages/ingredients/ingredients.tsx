@@ -2,26 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { RooteReducer } from "../../services/reducers/interface";
+import { IngredientItemType } from "../../utils/interface";
 import style from "./ingredients.module.css";
 
-interface ItemType {
-  _id: string;
-  name: string;
-  type: string;
-  proteins: number;
-  fat: number;
-  carbohydrates: number;
-  calories: number;
-  price: number;
-  image: string;
-  image_mobile: string;
-  image_large: string;
-  __v: number;
-  key: any;
-}
-
 const Ingredients = () => {
-  const [ingredient, setIngredient] = useState<ItemType | undefined>();
+  const [ingredient, setIngredient] =
+    useState<IngredientItemType | undefined>();
   const { id } = useParams<any>();
   const data = useSelector(
     (state: RooteReducer) => state.ingredients?.ingredients

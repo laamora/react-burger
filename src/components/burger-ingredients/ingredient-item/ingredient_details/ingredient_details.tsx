@@ -4,29 +4,15 @@ import Modal from "../../../modal/modal";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { RooteReducer } from "../../../../services/reducers/interface";
-
-interface ItemType {
-  _id: string;
-  name: string;
-  type: string;
-  proteins: number;
-  fat: number;
-  carbohydrates: number;
-  calories: number;
-  price: number;
-  image: string;
-  image_mobile: string;
-  image_large: string;
-  __v: number;
-  key: any;
-}
+import { IngredientItemType } from "../../../../utils/interface";
 
 interface IngredientDetailsProps {
   onClose: () => void;
 }
 
 const IngredientDetails = ({ onClose }: IngredientDetailsProps) => {
-  const [ingredient, setIngredient] = useState<ItemType | undefined>();
+  const [ingredient, setIngredient] =
+    useState<IngredientItemType | undefined>();
   const { id } = useParams<any>();
   const data = useSelector(
     (state: RooteReducer) => state.ingredients?.ingredients

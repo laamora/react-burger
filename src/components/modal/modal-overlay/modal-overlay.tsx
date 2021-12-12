@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import style from "./modal-overlay.module.css";
-import PropTypes from "prop-types";
 import { useHistory } from "react-router";
 
 const modalRoot = document.getElementById("react-modals");
@@ -33,8 +32,3 @@ const ModalOverlay = ({ children, onClose }: ModalOverlayProps) => {
 };
 
 export default ModalOverlay;
-
-ModalOverlay.propTypes = {
-  children: PropTypes.node.isRequired,
-  onClose: PropTypes.func.isRequired,
-};
