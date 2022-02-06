@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-// import style from "./burger-menu.module.css";
+import style from "./burger-menu.module.css";
 
 interface BurgerMenuProps {
   currentTab: string;
@@ -14,7 +14,7 @@ const BurgerMenu = ({ currentTab }: BurgerMenuProps) => {
   }, [currentTab]);
 
   return (
-    <div style={{ display: "flex" }}>
+    <div className={style.main}>
       <Tab value="one" active={current === "bun"} onClick={() => {}}>
         Булки
       </Tab>

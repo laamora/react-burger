@@ -5,7 +5,7 @@ import { TIngredientDetails } from "../services/actions/ingredient-details";
 import { TOrderDetails } from "../services/actions/order-details";
 import { store } from "../services/store";
 import { ThunkAction } from "redux-thunk";
-import { Action, ActionCreator } from "redux";
+import { Action, ActionCreator, Dispatch } from "redux";
 
 export type RootState = ReturnType<typeof store.getState>;
 export type TApplicationActions =
@@ -19,7 +19,7 @@ export type AppThunk<TReturn = void> = ActionCreator<
   ThunkAction<TReturn, Action, RootState, TApplicationActions>
 >;
 
-export type AppDispatch = typeof store.dispatch;
+export type AppDispatch = Dispatch<TApplicationActions>;
 
 export interface IngredientItemType {
   _id: string;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { useSelector } from "../../services/hooks";
 import { RooteReducer } from "../../services/reducers/interface";
 import { IngredientItemType } from "../../utils/interface";
 import style from "./ingredients.module.css";

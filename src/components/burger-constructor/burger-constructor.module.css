@@ -27,3 +27,12 @@
   align-items: center;
   margin-right: 41.5px;
 }
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 560px;
+  align-items: flex-end;
+  margin-top: 100px;
+  width: 588px;
+}

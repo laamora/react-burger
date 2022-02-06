@@ -2,15 +2,14 @@ import React from "react";
 import style from "./order-details.module.css";
 import img from "../../../images/done.png";
 import Modal from "../../modal/modal";
-import { useSelector } from "react-redux";
-import { RooteReducer } from "../../../services/reducers/interface";
+import { useSelector } from "../../../services/hooks";
 
 interface OrderDetailsProps {
   onClose: () => void;
 }
 
 const OrderDetails = ({ onClose }: OrderDetailsProps) => {
-  const number = useSelector((state: RooteReducer) => state.order.orderNumber);
+  const number = useSelector((state) => state.order.orderNumber);
   return (
     <Modal onClose={onClose}>
       <div className={style.text_container}>

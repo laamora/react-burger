@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router-dom";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import Constructor from "../../pages/constructor/constructor";
+import style from "./app-body.module.css";
 import Login from "../../pages/login/login";
 import Register from "../../pages/register/register";
 import Forgot from "../../pages/forgot-password/forgot-password";
@@ -35,7 +37,7 @@ const AppBody = () => {
   };
 
   return (
-    <main style={{ width: "100%" }}>
+    <main className={style.main}>
       <Switch location={background ?? location}>
         <Route exact path="/">
           <Constructor />

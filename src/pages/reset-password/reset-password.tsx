@@ -6,9 +6,8 @@ import {
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./reset-password.module.css";
-import { useDispatch, useSelector } from "react-redux";
 import { resetPassword } from "../../services/actions/auth";
-import { RooteReducer } from "../../services/reducers/interface";
+import { useDispatch, useSelector } from "../../services/hooks";
 
 const Reset = () => {
   const history = useHistory();
@@ -18,9 +17,7 @@ const Reset = () => {
   });
   const dispatch = useDispatch();
 
-  const isSuccess = useSelector(
-    (state: RooteReducer) => state.auth.resetSuccess
-  );
+  const isSuccess = useSelector((state) => state.auth.resetSuccess);
 
   useEffect(() => {
     if (isSuccess) {

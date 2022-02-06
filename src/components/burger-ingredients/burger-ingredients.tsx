@@ -2,13 +2,10 @@ import React, { useRef, useState } from "react";
 import style from "./burger-ingredients.module.css";
 import BurgerMenu from "./burger-menu/burger-menu";
 import IngredientItem from "./ingredient-item/ingredient-item";
-import { useSelector } from "react-redux";
-import { RooteReducer } from "../../services/reducers/interface";
+import { useSelector } from "../../services/hooks";
 
 function BurgerIngedients() {
-  const ingredients = useSelector(
-    (state: RooteReducer) => state.ingredients?.ingredients
-  );
+  const ingredients = useSelector((state) => state.ingredients?.ingredients);
 
   const tabsRef = useRef<HTMLDivElement>(null);
   const bunsRef = useRef<HTMLDivElement>(null);

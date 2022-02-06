@@ -31,3 +31,8 @@
   width: 268;
   height: 48;
 }
+
+.text {
+  height: 48px;
+  text-align: center;
+}

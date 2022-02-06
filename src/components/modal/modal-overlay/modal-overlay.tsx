@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import style from "./modal-overlay.module.css";
-import { useHistory } from "react-router";
 
 const modalRoot = document.getElementById("react-modals");
 
@@ -11,11 +10,9 @@ interface ModalOverlayProps {
 }
 
 const ModalOverlay = ({ children, onClose }: ModalOverlayProps) => {
-  const history = useHistory();
   const clickHandler = (e: React.MouseEvent<HTMLElement>) => {
-    if (e.target === document.getElementById("ModalOverlay")) {
+    if (e.target === e.currentTarget) {
       onClose();
-      history.replace("/");
     }
   };
 

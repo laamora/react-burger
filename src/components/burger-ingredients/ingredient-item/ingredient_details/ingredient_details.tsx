@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import style from "./ingredient_details.module.css";
 import Modal from "../../../modal/modal";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { RooteReducer } from "../../../../services/reducers/interface";
 import { IngredientItemType } from "../../../../utils/interface";
+import { useSelector } from "../../../../services/hooks";
 
 interface IngredientDetailsProps {
   onClose: () => void;

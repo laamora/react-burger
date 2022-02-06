@@ -6,7 +6,6 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./burger-constructor.module.css";
 import { useDrop } from "react-dnd";
-import { useDispatch, useSelector } from "react-redux";
 import {
   clearAll,
   setBun,
@@ -16,20 +15,16 @@ import ConstructorIngredient from "./constructor-ingredient/constructor-ingredie
 import { getNumber, removeOrder } from "../../services/actions/order-details";
 import { isAutenticated } from "../../utils/functions";
 import { useHistory } from "react-router";
-import { RooteReducer } from "../../services/reducers/interface";
 import OrderDetails from "./order-details/order-details";
 import { IngredientItemType } from "../../utils/interface";
+import { useDispatch, useSelector } from "../../services/hooks";
 
 const BurgerConstructor = () => {
   const [details, showDetails] = useState(false);
   const dispatch = useDispatch();
-  const bun = useSelector((state: RooteReducer) => state.constructors.bun);
-  const success = useSelector(
-    (state: RooteReducer) => state.order.orderSuccess
-  );
-  const ingredients = useSelector(
-    (state: RooteReducer) => state.constructors?.ingredients
-  );
+  const bun = useSelector((state) => state.constructors.bun);
+  const success = useSelector((state) => state.order.orderSuccess);
+  const ingredients = useSelector((state) => state.constructors?.ingredients);
   const sumTotal = ingredients?.reduce((sum, { price }) => sum + price, 0);
   const history = useHistory();
 
@@ -80,18 +75,7 @@ const BurgerConstructor = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "16px",
-          height: "560px",
-          alignItems: "end",
-          marginTop: "100px",
-          width: "588px",
-        }}
-        ref={dropRef}
-      >
+      <div className={style.main} ref={dropRef}>
         <div className="pr-4">
           {bun && (
             <ConstructorElement

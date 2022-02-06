@@ -1,7 +1,6 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RooteReducer } from "../../services/reducers/interface";
+import { useSelector } from "../../services/hooks";
 
 interface ResetProtectProps {
   children: React.ReactNode;
@@ -31,9 +30,7 @@ const ResetProtect = ({ children, ...rest }: ResetProtectProps) => {
     return localStorage.getItem("accessToken") && !isTokenExpired();
   }
 
-  const isForgotSuccess = useSelector(
-    (state: RooteReducer) => state.auth.forgotSuccess
-  );
+  const isForgotSuccess = useSelector((state) => state.auth.forgotSuccess);
 
   return (
     <Route

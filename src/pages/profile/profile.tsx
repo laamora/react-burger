@@ -7,9 +7,8 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./profile.module.css";
 import { changeUserData, logout } from "../../services/actions/auth";
-import { useDispatch, useSelector } from "react-redux";
-import { RooteReducer } from "../../services/reducers/interface";
 import Orders from "./orders/orders";
+import { useDispatch, useSelector } from "../../services/hooks";
 
 const Profile = () => {
   const [user, setUser] = useState({
@@ -23,18 +22,28 @@ const Profile = () => {
   const onChange = () => {
     setChanged(true);
   };
-  const userData = useSelector((state: RooteReducer) => state.auth.user);
+  const userData = useSelector((state) => state.auth.user);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    setUser(userData);
+    const obj = {
+      name: userData.name,
+      email: userData.email,
+      password: "",
+    };
+    setUser(obj);
   }, [userData]);
 
   const cancel = () => {
-    setUser(userData);
+    const obj = {
+      name: userData.name,
+      email: userData.email,
+      password: "",
+    };
+    setUser(obj);
     setChanged(false);
   };
 
@@ -89,7 +98,7 @@ const Profile = () => {
             <Input
               type={"text"}
               placeholder={"Имя"}
-              value={user.name}
+              value={user.name || ""}
               name={"profile"}
               size={"default"}
               onChange={(e) => {
@@ -99,7 +108,7 @@ const Profile = () => {
             />
             <Input
               type={"text"}
-              value={user.email}
+              value={user.email || ""}
               placeholder={"Логин"}
               name={"profile"}
               size={"default"}
@@ -109,7 +118,7 @@ const Profile = () => {
               }}
             />
             <PasswordInput
-              value={user.password}
+              value={user.password || ""}
               name={"password"}
               onChange={(e) => {
                 setUser({ ...user, password: e.target.value });

@@ -1,4 +1,5 @@
 import { MAIN_API } from "../../utils/constants";
+import { AppDispatch, AppThunk } from "../../utils/interface";
 
 export const GET_ORDER_REQUEST: "GET_ORDER_REQUEST" = "GET_ORDER_REQUEST";
 export const GET_ORDER_FAILED: "GET_ORDER_FAILED" = "GET_ORDER_FAILED";
@@ -25,13 +26,8 @@ export type TOrderDetails =
   | IGetOrderSucces
   | IRemoveOrder;
 
-export const getNumber = (ids: string[]) => {
-  return (
-    dispatch: (arg0: {
-      type: "GET_ORDER_REQUEST" | "GET_ORDER_FAILED" | "GET_ORDER_SUCCESS";
-      payload?: any;
-    }) => void
-  ) => {
+export const getNumber: AppThunk = (ids: string[]) => {
+  return (dispatch: AppDispatch) => {
     dispatch({
       type: GET_ORDER_REQUEST,
     });

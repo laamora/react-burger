@@ -9,7 +9,7 @@ import {
 } from "../actions/burger-constructor";
 
 type TConstructorState = {
-  ingredients: [] | IngredientItemType[];
+  ingredients: IngredientItemType[];
   bun: null | IngredientItemType;
   count: number;
 };

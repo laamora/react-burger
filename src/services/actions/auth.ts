@@ -1,4 +1,5 @@
 import { MAIN_API } from "../../utils/constants";
+import { AppDispatch, AppThunk } from "../../utils/interface";
 
 export const GET_FORGOT_REQUEST: "GET_FORGOT_REQUEST" = "GET_FORGOT_REQUEST";
 export const GET_FORGOT_FAILED: "GET_FORGOT_FAILED" = "GET_FORGOT_FAILED";
@@ -85,7 +86,6 @@ export interface ILogoutFailed {
 }
 export interface ILogoutSucces {
   readonly type: typeof LOGOUT_SUCCESS;
-  readonly payload: any;
 }
 
 export interface IGetUserRequest {
@@ -134,13 +134,8 @@ export type TAuth =
   | IChangeUserSucces;
 
 // password part
-export const forgotPassword = (value: string) => {
-  return (
-    dispatch: (arg0: {
-      type: "GET_FORGOT_REQUEST" | "GET_FORGOT_SUCCESS" | "GET_FORGOT_FAILED";
-      payload?: any;
-    }) => void
-  ) => {
+export const forgotPassword: AppThunk = (value: string) => {
+  return (dispatch: AppDispatch) => {
     dispatch({
       type: GET_FORGOT_REQUEST,
     });
@@ -160,13 +155,11 @@ export const forgotPassword = (value: string) => {
   };
 };
 
-export const resetPassword = (value: { password: string; token: string }) => {
-  return (
-    dispatch: (arg0: {
-      type: "GET_RESET_REQUEST" | "GET_RESET_FAILED" | "GET_RESET_SUCCESS";
-      payload?: any;
-    }) => void
-  ) => {
+export const resetPassword: AppThunk = (value: {
+  password: string;
+  token: string;
+}) => {
+  return (dispatch: AppDispatch) => {
     dispatch({
       type: GET_RESET_REQUEST,
     });
@@ -189,22 +182,15 @@ export const resetPassword = (value: { password: string; token: string }) => {
 };
 
 // user part
-export const register = (
+export const register: AppThunk = (
   value: { email: string; password: string; name: string },
   history: any
 ) => {
   console.log(value);
-  return (
-    dispatch: (arg0: {
-      type:
-        | "GET_REGISTER_REQUEST"
-        | "GET_REGISTER_FAILED"
-        | "GET_REGISTER_SUCCESS";
-      payload?: any;
-    }) => void
-  ) => {
+  return (dispatch: AppDispatch) => {
     dispatch({
       type: GET_REGISTER_REQUEST,
+      payload: "",
     });
     fetch(`${MAIN_API}/auth/register`, {
       method: "POST",
@@ -219,7 +205,7 @@ export const register = (
     })
       .then((res) => {
         if (res.ok) return res.json();
-        else dispatch({ type: GET_REGISTER_FAILED });
+        else dispatch({ type: GET_REGISTER_FAILED, payload: "" });
       })
       .then((res) => {
         dispatch({ type: GET_REGISTER_SUCCESS, payload: res });
@@ -227,11 +213,11 @@ export const register = (
         localStorage.setItem("refreshToken", res.refreshToken);
         history.push("/");
       })
-      .catch(() => dispatch({ type: GET_REGISTER_FAILED }));
+      .catch(() => dispatch({ type: GET_REGISTER_FAILED, payload: "" }));
   };
 };
 
-export const login = ({
+export const login: AppThunk = ({
   email,
   password,
   history,
@@ -240,12 +226,7 @@ export const login = ({
   password: string;
   history: any;
 }) => {
-  return (
-    dispatch: (arg0: {
-      type: "AUTH_REQUEST" | "AUTH_SUCCESS" | "AUTH_FAILED";
-      payload?: any;
-    }) => void
-  ) => {
+  return (dispatch: AppDispatch) => {
     dispatch({ type: AUTH_REQUEST });
     fetch(`${MAIN_API}/auth/login`, {
       method: "POST",
@@ -270,13 +251,8 @@ export const login = ({
   };
 };
 
-export function logout(history: any) {
-  return function (
-    dispatch: (arg0: {
-      type: "LOGOUT_REQUEST" | "LOGOUT_SUCCESS" | "LOGOUT_FAILED";
-      payload?: any;
-    }) => void
-  ) {
+export const logout: AppThunk = (history: any) => {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: LOGOUT_REQUEST,
     });
@@ -307,7 +283,7 @@ export function logout(history: any) {
         });
       });
   };
-}
+};
 
 // token part
 const checkRes = (res: Response) => {
@@ -350,13 +326,8 @@ export const retriableFetch = async (url: string, options = {}) => {
   }
 };
 
-export function getUserData() {
-  return function (
-    dispatch: (arg0: {
-      type: "GET_USER_REQUEST" | "GET_USER_SUCCESS" | "GET_USER_FAILED";
-      payload?: any;
-    }) => void
-  ) {
+export const getUserData: AppThunk = () => {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: GET_USER_REQUEST,
     });
@@ -379,22 +350,14 @@ export function getUserData() {
         });
       });
   };
-}
+};
 
-export function changeUserData(object: {
+export const changeUserData: AppThunk = (object: {
   name: string;
   email: string;
   password?: string | undefined | null;
-}) {
-  return function (
-    dispatch: (arg0: {
-      type:
-        | "CHANGE_USER_REQUEST"
-        | "CHANGE_USER_SUCCESS"
-        | "CHANGE_USER_FAILED";
-      payload?: any;
-    }) => void
-  ) {
+}) => {
+  return function (dispatch: AppDispatch) {
     let obj = {};
     if (!object.password) {
       obj = {
@@ -439,4 +402,4 @@ export function changeUserData(object: {
         });
       });
   };
-}
+};

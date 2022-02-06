@@ -22,20 +22,24 @@ export default function OrderInfo() {
   } else {
     type = WS_CONNECTION_START_ALL;
   }
+
   useEffect(() => {
     dispatch({ type: type });
     return () => {
       dispatch({ type: WS_CONNECTION_CLOSED });
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const orders = useSelector((store) => store.ws.messages);
   const ingredients = useSelector((store) => store.ingredients?.ingredients);
   const item = order?.filter((item) => item._id === id)[0];
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setIngredient(ingredients);
   });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setOrder(orders);
   });

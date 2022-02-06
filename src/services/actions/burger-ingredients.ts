@@ -1,5 +1,9 @@
 import { MAIN_API } from "../../utils/constants";
-import { IngredientItemType } from "../../utils/interface";
+import {
+  AppDispatch,
+  AppThunk,
+  IngredientItemType,
+} from "../../utils/interface";
 
 export const GET_DATA: "GET_DATA" = "GET_DATA";
 export const SET_ERROR: "SET_ERROR" = "SET_ERROR";
@@ -34,10 +38,8 @@ export const getData = (payload: { data: IngredientItemType[] }) => {
   };
 };
 
-export const fetchData = () => {
-  return function (
-    dispatch: (arg0: { type: "GET_DATA" | "SET_ERROR"; payload?: any }) => void
-  ) {
+export const fetchData: AppThunk = () => {
+  return function (dispatch: AppDispatch) {
     fetch(`${MAIN_API}/ingredients`)
       .then((res) => res.json())
       .then((data) => dispatch(getData(data)))

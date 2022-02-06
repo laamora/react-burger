@@ -70,10 +70,7 @@ const IngredientItem = ({ item }: IngredientItemProps) => {
           <CurrencyIcon type="primary" />
         </div>
         <div className={style.name}>
-          <p
-            className="text text_type_main-default"
-            style={{ height: "48px", textAlign: "center" }}
-          >
+          <p className={`${style.text} text text_type_main-default`}>
             {item.name}
           </p>
         </div>

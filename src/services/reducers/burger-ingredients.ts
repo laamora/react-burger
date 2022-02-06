@@ -1,4 +1,4 @@
-import { IngredientType } from "../../utils/interface";
+import { IngredientItemType } from "../../utils/interface";
 import {
   GET_DATA,
   SET_ERROR,
@@ -6,7 +6,7 @@ import {
 } from "../actions/burger-ingredients";
 
 type TIngredients = {
-  ingredients: [] | IngredientType[];
+  ingredients: [] | IngredientItemType[];
   error: string;
 };
 
