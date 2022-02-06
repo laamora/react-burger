@@ -1,36 +1,146 @@
 import { MAIN_API } from "../../utils/constants";
 
-export const GET_FORGOT_REQUEST = "GET_FORGOT_REQUEST";
-export const GET_FORGOT_FAILED = "GET_FORGOT_FAILED";
+export const GET_FORGOT_REQUEST: "GET_FORGOT_REQUEST" = "GET_FORGOT_REQUEST";
+export const GET_FORGOT_FAILED: "GET_FORGOT_FAILED" = "GET_FORGOT_FAILED";
 export const GET_FORGOT_SUCCESS = "GET_FORGOT_SUCCESS";
 
-export const GET_RESET_REQUEST = "GET_RESET_REQUEST";
-export const GET_RESET_FAILED = "GET_RESET_FAILED";
-export const GET_RESET_SUCCESS = "GET_RESET_SUCCESS";
+export const GET_RESET_REQUEST: "GET_RESET_REQUEST" = "GET_RESET_REQUEST";
+export const GET_RESET_FAILED: "GET_RESET_FAILED" = "GET_RESET_FAILED";
+export const GET_RESET_SUCCESS: "GET_RESET_SUCCESS" = "GET_RESET_SUCCESS";
 
-export const GET_REGISTER_REQUEST = "GET_REGISTER_REQUEST";
-export const GET_REGISTER_FAILED = "GET_REGISTER_REQUEST";
-export const GET_REGISTER_SUCCESS = "GET_REGISTER_REQUEST";
+export const GET_REGISTER_REQUEST: "GET_REGISTER_REQUEST" =
+  "GET_REGISTER_REQUEST";
+export const GET_REGISTER_FAILED: "GET_REGISTER_REQUEST" =
+  "GET_REGISTER_REQUEST";
+export const GET_REGISTER_SUCCESS: "GET_REGISTER_REQUEST" =
+  "GET_REGISTER_REQUEST";
 
-export const AUTH_REQUEST = "AUTH_REQUEST";
-export const AUTH_SUCCESS = "AUTH_SUCCESS";
-export const AUTH_FAILED = "AUTH_FAILED";
+export const AUTH_REQUEST: "AUTH_REQUEST" = "AUTH_REQUEST";
+export const AUTH_SUCCESS: "AUTH_SUCCESS" = "AUTH_SUCCESS";
+export const AUTH_FAILED: "AUTH_FAILED" = "AUTH_FAILED";
 
-export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
-export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
-export const LOGOUT_FAILED = "LOGOUT_FAILED";
+export const LOGOUT_REQUEST: "LOGOUT_REQUEST" = "LOGOUT_REQUEST";
+export const LOGOUT_SUCCESS: "LOGOUT_SUCCESS" = "LOGOUT_SUCCESS";
+export const LOGOUT_FAILED: "LOGOUT_FAILED" = "LOGOUT_FAILED";
 
-export const GET_USER_REQUEST = "GET_USER_REQUEST";
-export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
-export const GET_USER_FAILED = "GET_USER_FAILED";
+export const GET_USER_REQUEST: "GET_USER_REQUEST" = "GET_USER_REQUEST";
+export const GET_USER_SUCCESS: "GET_USER_SUCCESS" = "GET_USER_SUCCESS";
+export const GET_USER_FAILED: "GET_USER_FAILED" = "GET_USER_FAILED";
 
-export const CHANGE_USER_REQUEST = "CHANGE_USER_REQUEST";
-export const CHANGE_USER_SUCCESS = "CHANGE_USER_SUCCESS";
-export const CHANGE_USER_FAILED = "CHANGE_USER_FAILED";
+export const CHANGE_USER_REQUEST: "CHANGE_USER_REQUEST" = "CHANGE_USER_REQUEST";
+export const CHANGE_USER_SUCCESS: "CHANGE_USER_SUCCESS" = "CHANGE_USER_SUCCESS";
+export const CHANGE_USER_FAILED: "CHANGE_USER_FAILED" = "CHANGE_USER_FAILED";
+
+export interface IGetForgotRequest {
+  readonly type: typeof GET_FORGOT_REQUEST;
+}
+export interface IGetForgotFailed {
+  readonly type: typeof GET_FORGOT_FAILED;
+}
+export interface IGetForgotSucces {
+  readonly type: typeof GET_FORGOT_SUCCESS;
+  readonly payload: any;
+}
+
+export interface IGetResetRequest {
+  readonly type: typeof GET_RESET_REQUEST;
+}
+export interface IGetResetFailed {
+  readonly type: typeof GET_RESET_FAILED;
+}
+export interface IGetResetSucces {
+  readonly type: typeof GET_RESET_SUCCESS;
+  readonly payload: any;
+}
+
+export interface IGetRegisterRequest {
+  readonly type: typeof GET_REGISTER_REQUEST;
+  readonly payload: any;
+}
+export interface IGetRegisterFailed {
+  readonly type: typeof GET_REGISTER_FAILED;
+  readonly payload: any;
+}
+export interface IGetRegisterSucces {
+  readonly type: typeof GET_REGISTER_SUCCESS;
+  readonly payload: any;
+}
+
+export interface IAuthRequest {
+  readonly type: typeof AUTH_REQUEST;
+}
+export interface IAuthFailed {
+  readonly type: typeof AUTH_FAILED;
+}
+export interface IAuthSucces {
+  readonly type: typeof AUTH_SUCCESS;
+  readonly payload: any;
+}
+
+export interface ILogoutRequest {
+  readonly type: typeof LOGOUT_REQUEST;
+}
+export interface ILogoutFailed {
+  readonly type: typeof LOGOUT_FAILED;
+}
+export interface ILogoutSucces {
+  readonly type: typeof LOGOUT_SUCCESS;
+  readonly payload: any;
+}
+
+export interface IGetUserRequest {
+  readonly type: typeof GET_USER_REQUEST;
+}
+export interface IGetUserFailed {
+  readonly type: typeof GET_USER_FAILED;
+}
+export interface IGetUserSucces {
+  readonly type: typeof GET_USER_SUCCESS;
+  readonly payload: any;
+}
+
+export interface IChangeUserRequest {
+  readonly type: typeof CHANGE_USER_REQUEST;
+}
+export interface IChangeUserFailed {
+  readonly type: typeof CHANGE_USER_FAILED;
+}
+export interface IChangeUserSucces {
+  readonly type: typeof CHANGE_USER_SUCCESS;
+  readonly payload: any;
+}
+
+export type TAuth =
+  | IGetForgotRequest
+  | IGetForgotFailed
+  | IGetForgotSucces
+  | IGetResetRequest
+  | IGetResetFailed
+  | IGetResetSucces
+  | IGetRegisterRequest
+  | IGetRegisterFailed
+  | IGetRegisterSucces
+  | IAuthRequest
+  | IAuthFailed
+  | IAuthSucces
+  | ILogoutRequest
+  | ILogoutFailed
+  | ILogoutSucces
+  | IGetUserRequest
+  | IGetUserFailed
+  | IGetUserSucces
+  | IChangeUserRequest
+  | IChangeUserFailed
+  | IChangeUserSucces;
 
 // password part
-export const forgotPassword = (value) => {
-  return (dispatch) => {
+export const forgotPassword = (value: string) => {
+  return (
+    dispatch: (arg0: {
+      type: "GET_FORGOT_REQUEST" | "GET_FORGOT_SUCCESS" | "GET_FORGOT_FAILED";
+      payload?: any;
+    }) => void
+  ) => {
     dispatch({
       type: GET_FORGOT_REQUEST,
     });
@@ -50,8 +160,13 @@ export const forgotPassword = (value) => {
   };
 };
 
-export const resetPassword = (value) => {
-  return (dispatch) => {
+export const resetPassword = (value: { password: string; token: string }) => {
+  return (
+    dispatch: (arg0: {
+      type: "GET_RESET_REQUEST" | "GET_RESET_FAILED" | "GET_RESET_SUCCESS";
+      payload?: any;
+    }) => void
+  ) => {
     dispatch({
       type: GET_RESET_REQUEST,
     });
@@ -74,9 +189,20 @@ export const resetPassword = (value) => {
 };
 
 // user part
-export const register = (value, history) => {
+export const register = (
+  value: { email: string; password: string; name: string },
+  history: any
+) => {
   console.log(value);
-  return (dispatch) => {
+  return (
+    dispatch: (arg0: {
+      type:
+        | "GET_REGISTER_REQUEST"
+        | "GET_REGISTER_FAILED"
+        | "GET_REGISTER_SUCCESS";
+      payload?: any;
+    }) => void
+  ) => {
     dispatch({
       type: GET_REGISTER_REQUEST,
     });
@@ -105,8 +231,21 @@ export const register = (value, history) => {
   };
 };
 
-export const login = ({ email, password, history }) => {
-  return (dispatch) => {
+export const login = ({
+  email,
+  password,
+  history,
+}: {
+  email: string;
+  password: string;
+  history: any;
+}) => {
+  return (
+    dispatch: (arg0: {
+      type: "AUTH_REQUEST" | "AUTH_SUCCESS" | "AUTH_FAILED";
+      payload?: any;
+    }) => void
+  ) => {
     dispatch({ type: AUTH_REQUEST });
     fetch(`${MAIN_API}/auth/login`, {
       method: "POST",
@@ -131,8 +270,13 @@ export const login = ({ email, password, history }) => {
   };
 };
 
-export function logout(history) {
-  return function (dispatch) {
+export function logout(history: any) {
+  return function (
+    dispatch: (arg0: {
+      type: "LOGOUT_REQUEST" | "LOGOUT_SUCCESS" | "LOGOUT_FAILED";
+      payload?: any;
+    }) => void
+  ) {
     dispatch({
       type: LOGOUT_REQUEST,
     });
@@ -166,7 +310,7 @@ export function logout(history) {
 }
 
 // token part
-const checkRes = (res) => {
+const checkRes = (res: Response) => {
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
@@ -182,12 +326,12 @@ export const refreshToken = () => {
   }).then(checkRes);
 };
 
-export const retriableFetch = async (url, options = {}) => {
+export const retriableFetch = async (url: string, options = {}) => {
   try {
     const res = await fetch(url, options);
     const result = await checkRes(res);
     return result; // или можно сделать return await; главное дождаться промиса, чтоб catch сработал при ошибке
-  } catch (err) {
+  } catch (err: any) {
     // сначала убеждаемся, что это не любая ошибка, а нужно токен обновить
     if (err.message === "jwt expired") {
       const refreshData = await refreshToken(); // обновляем токен; пытаемся 1 раз, если не сложилось -- падаем с ошибкой
@@ -207,7 +351,12 @@ export const retriableFetch = async (url, options = {}) => {
 };
 
 export function getUserData() {
-  return function (dispatch) {
+  return function (
+    dispatch: (arg0: {
+      type: "GET_USER_REQUEST" | "GET_USER_SUCCESS" | "GET_USER_FAILED";
+      payload?: any;
+    }) => void
+  ) {
     dispatch({
       type: GET_USER_REQUEST,
     });
@@ -232,8 +381,20 @@ export function getUserData() {
   };
 }
 
-export function changeUserData(object) {
-  return function (dispatch) {
+export function changeUserData(object: {
+  name: string;
+  email: string;
+  password?: string | undefined | null;
+}) {
+  return function (
+    dispatch: (arg0: {
+      type:
+        | "CHANGE_USER_REQUEST"
+        | "CHANGE_USER_SUCCESS"
+        | "CHANGE_USER_FAILED";
+      payload?: any;
+    }) => void
+  ) {
     let obj = {};
     if (!object.password) {
       obj = {

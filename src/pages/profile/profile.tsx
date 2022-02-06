@@ -9,6 +9,7 @@ import style from "./profile.module.css";
 import { changeUserData, logout } from "../../services/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { RooteReducer } from "../../services/reducers/interface";
+import Orders from "./orders/orders";
 
 const Profile = () => {
   const [user, setUser] = useState({
@@ -128,8 +129,9 @@ const Profile = () => {
             )}
           </form>
         </Route>
-        <Route path="/profile/orders" exact={true}></Route>
-        <Route path="/pofile/orders/:id" exact={true}></Route>
+        <Route path="/profile/orders" exact={true}>
+          <Orders />
+        </Route>
       </Switch>
     </div>
   );

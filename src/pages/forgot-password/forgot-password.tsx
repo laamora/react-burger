@@ -5,17 +5,14 @@ import {
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./forgot-password.module.css";
-import { useDispatch, useSelector } from "react-redux";
 import { forgotPassword } from "../../services/actions/auth";
-import { RooteReducer } from "../../services/reducers/interface";
+import { useDispatch, useSelector } from "../../services/hooks";
 
 const Forgot = () => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
-  const isSuccess = useSelector(
-    (state: RooteReducer) => state.auth.forgotSuccess
-  );
+  const isSuccess = useSelector((state) => state.auth.forgotSuccess);
 
   useEffect(() => {
     if (isSuccess) {

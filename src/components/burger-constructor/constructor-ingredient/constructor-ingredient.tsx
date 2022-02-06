@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
 import {
   deleteIngredient,
   moveIngredients,
@@ -11,6 +10,7 @@ import {
 import style from "./constructor-ingredient.module.css";
 import { useDrag, useDrop } from "react-dnd";
 import { IngredientItemType } from "../../../utils/interface";
+import { useDispatch } from "../../../services/hooks";
 
 interface ItemType {
   index: number;

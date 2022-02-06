@@ -6,10 +6,9 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { setDetails } from "../../../services/actions/ingredient-details";
 import { DragPreviewImage, useDrag } from "react-dnd";
-import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { RooteReducer } from "../../../services/reducers/interface";
 import { IngredientItemType } from "../../../utils/interface";
+import { useDispatch, useSelector } from "../../../services/hooks";
 
 interface IngredientItemProps {
   item: IngredientItemType;
@@ -28,7 +27,7 @@ const IngredientItem = ({ item }: IngredientItemProps) => {
   });
   const opacity = isDragging ? 0.5 : 1;
 
-  const ingredients = useSelector((state: RooteReducer) => state.constructors);
+  const ingredients = useSelector((state) => state.constructors);
   const itemCount = () => {
     if (
       item.type === "bun" &&

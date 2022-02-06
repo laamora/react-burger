@@ -3,16 +3,27 @@ import {
   GET_ORDER_FAILED,
   GET_ORDER_SUCCESS,
   REMOVE_ORDER,
+  TOrderDetails,
 } from "../actions/order-details";
 
-const defaultState = {
+type TOrder = {
+  orderNumber: null | string;
+  orderRequest: boolean;
+  orderFailed: boolean;
+  orderSuccess: boolean;
+};
+
+const defaultState: TOrder = {
   orderNumber: null,
   orderRequest: false,
   orderFailed: false,
   orderSuccess: false,
 };
 
-export const orderDetails = (state = defaultState, action) => {
+export const orderDetails = (
+  state = defaultState,
+  action: TOrderDetails
+): TOrder => {
   switch (action.type) {
     case GET_ORDER_REQUEST: {
       return {

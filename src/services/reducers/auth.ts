@@ -20,9 +20,45 @@ import {
   CHANGE_USER_REQUEST,
   CHANGE_USER_SUCCESS,
   CHANGE_USER_FAILED,
+  TAuth,
 } from "../actions/auth";
 
-const defaultState = {
+type TAuthState = {
+  forgotMessage: string;
+  forgotRequest: boolean;
+  forgotFailed: boolean;
+  forgotSuccess: boolean;
+
+  resetMessage: string;
+  resetRequest: boolean;
+  resetFailed: boolean;
+  resetSuccess: boolean;
+
+  registerFailed: boolean;
+  registerRequest: boolean;
+  registerSuccess: boolean;
+  user: {
+    name: string;
+    email: string;
+  };
+  authRequest: boolean;
+  authError: boolean;
+  isAuth: boolean;
+
+  logoutRequest: boolean;
+  logoutSuccess: boolean;
+  logoutFailed: boolean;
+
+  getUserRequest: boolean;
+  getUserFailed: boolean;
+  getUserSuccess: boolean;
+
+  changeUserRequest: boolean;
+  changeUserSuccess: boolean;
+  changeUserFailed: boolean;
+};
+
+const defaultState: TAuthState = {
   forgotMessage: "",
   forgotRequest: false,
   forgotFailed: false,
@@ -57,7 +93,7 @@ const defaultState = {
   changeUserFailed: false,
 };
 
-export const auth = (state = defaultState, action) => {
+export const auth = (state = defaultState, action: TAuth): TAuthState => {
   switch (action.type) {
     // forgot
     case GET_FORGOT_REQUEST: {

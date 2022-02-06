@@ -31,6 +31,7 @@ const ProtectedRoute = ({ children, ...rest }: ProtectedRouteProps) => {
   return (
     <Route
       {...rest}
+      exact
       render={({ location }) =>
         isAutenticated() ? (
           children

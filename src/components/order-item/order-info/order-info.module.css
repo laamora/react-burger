@@ -1,0 +1,45 @@
+.image {
+  width: 132px;
+  height: 70px;
+  border-radius: 100px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  border: 2px solid #801ab2;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.nameCont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.total {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ingredients {
+  max-height: 266px !important;
+  overflow-y: scroll;
+  padding-right: 24px;
+}
+
+.total {
+  display: flex;
+  flex-direction: row;
+}
+.last {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.main_container {
+  max-width: 640px;
+  margin: auto;
+}

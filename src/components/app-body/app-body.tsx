@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router-dom";
+import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import Constructor from "../../pages/constructor/constructor";
 import Login from "../../pages/login/login";
 import Register from "../../pages/register/register";
@@ -10,12 +11,15 @@ import Profile from "../../pages/profile/profile";
 import ProtectedRoute from "../protected-route/protected-route";
 import LoggedProtect from "../logged-protect/logged-protect";
 import ResetProtect from "../reset-protect/reset-protect";
-import { useDispatch } from "react-redux";
 import {
   CLOSE_DETAILS,
   removeDetails,
 } from "../../services/actions/ingredient-details";
 import IngredientDetails from "../burger-ingredients/ingredient-item/ingredient_details/ingredient_details";
+import Feed from "../../pages/feed/feed";
+import { useDispatch } from "../../services/hooks";
+import OrderInfo from "../order-item/order-info/order-info";
+import Modal from "../modal/modal";
 
 const AppBody = () => {
   const location = useLocation<any>();
@@ -31,7 +35,7 @@ const AppBody = () => {
   };
 
   return (
-    <main>
+    <main style={{ width: "100%" }}>
       <Switch location={background ?? location}>
         <Route exact path="/">
           <Constructor />
@@ -48,18 +52,44 @@ const AppBody = () => {
         <ResetProtect exact path="/reset-password">
           <Reset />
         </ResetProtect>
+        <ProtectedRoute path="/profile/orders/:id">
+          <div className="pt-10">
+            <OrderInfo />
+          </div>
+        </ProtectedRoute>
         <ProtectedRoute path="/profile">
           <Profile />
         </ProtectedRoute>
         <Route path="/ingredients/:id">
           <Ingredients />
         </Route>
-        <Route></Route>
+        <Route exact path="/feed">
+          <Feed />
+        </Route>
+        <Route exact path="/feed/:id">
+          <div className="pt-10">
+            <OrderInfo />
+          </div>
+        </Route>
       </Switch>
       {background && (
         <Route path="/ingredients/:id">
           <IngredientDetails onClose={handleClose} />
         </Route>
+      )}
+      {background && (
+        <Route exact path="/feed/:id">
+          <Modal header={""} onClose={() => history.replace("/feed")}>
+            <OrderInfo />
+          </Modal>
+        </Route>
+      )}
+      {background && (
+        <ProtectedRoute path="/profile/orders/:id">
+          <Modal header={""} onClose={() => history.replace("/profile/orders")}>
+            <OrderInfo />
+          </Modal>
+        </ProtectedRoute>
       )}
     </main>
   );

@@ -6,8 +6,8 @@ import {
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./login.module.css";
-import { useDispatch } from "react-redux";
 import { login } from "../../services/actions/auth";
+import { useDispatch } from "../../services/hooks";
 
 const Login = () => {
   const history = useHistory();

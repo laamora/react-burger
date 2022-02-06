@@ -1,16 +1,26 @@
+import { IngredientType } from "../../utils/interface";
 import {
   SET_DETAILS,
   REMOVE_DETAILS,
   SHOW_DETAILS,
   CLOSE_DETAILS,
+  TIngredientDetails,
 } from "../actions/ingredient-details";
 
-const defaultState = {
+type TDetails = {
+  details: null | IngredientType;
+  show: boolean;
+};
+
+const defaultState: TDetails = {
   details: null,
   show: false,
 };
 
-export const ingredientDetails = (state = defaultState, action) => {
+export const ingredientDetails = (
+  state = defaultState,
+  action: TIngredientDetails
+): TDetails => {
   switch (action.type) {
     case SET_DETAILS:
       return { ...state, details: action.payload };
