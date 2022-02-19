@@ -41,7 +41,10 @@ const IngredientDetails = ({ onClose }: IngredientDetailsProps) => {
                 </p>
               </div>
               <div className={style.calories_text}>
-                <p className="text text_type_digits-default text_color_inactive">
+                <p
+                  id="calories"
+                  className="text text_type_digits-default text_color_inactive"
+                >
                   {ingredient.calories}
                 </p>
               </div>
@@ -53,7 +56,10 @@ const IngredientDetails = ({ onClose }: IngredientDetailsProps) => {
                 </p>
               </div>
               <div className={style.text_pfc}>
-                <p className="text text_type_digits-default text_color_inactive">
+                <p
+                  id="proteins"
+                  className="text text_type_digits-default text_color_inactive"
+                >
                   {ingredient.proteins}
                 </p>
               </div>
@@ -65,7 +71,10 @@ const IngredientDetails = ({ onClose }: IngredientDetailsProps) => {
                 </p>
               </div>
               <div className={style.text_pfc}>
-                <p className="text text_type_digits-default text_color_inactive">
+                <p
+                  id="fats"
+                  className="text text_type_digits-default text_color_inactive"
+                >
                   {ingredient.fat}
                 </p>
               </div>
@@ -77,7 +86,10 @@ const IngredientDetails = ({ onClose }: IngredientDetailsProps) => {
                 </p>
               </div>
               <div className={style.text_pfc}>
-                <p className="text text_type_digits-default text_color_inactive">
+                <p
+                  id="carbohydrates"
+                  className="text text_type_digits-default text_color_inactive"
+                >
                   {ingredient.carbohydrates}
                 </p>
               </div>

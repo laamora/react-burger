@@ -30,11 +30,13 @@ const Modal = ({ children, header, onClose }: ModalProps) => {
   return (
     <ModalOverlay onClose={onClose}>
       <div className={style.cart}>
-        <div className={style.container}>
+        <div id="modal" className={style.container}>
           <div className={style.button_container}>
             {header && <p className="text text_type_main-large">{header}</p>}
             {!header && <div className={style.empty_div}></div>}
-            <CloseIcon type="primary" onClick={() => handleClick()} />
+            <div id="closeIcon" onClick={() => handleClick()}>
+              <CloseIcon type="primary" />
+            </div>
           </div>
           {children}
         </div>

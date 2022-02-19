@@ -75,7 +75,7 @@ const BurgerConstructor = () => {
 
   return (
     <>
-      <div className={style.main} ref={dropRef}>
+      <div id="constructor" className={style.main} ref={dropRef}>
         <div className="pr-4">
           {bun && (
             <ConstructorElement
