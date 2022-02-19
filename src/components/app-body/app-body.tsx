@@ -13,10 +13,6 @@ import Profile from "../../pages/profile/profile";
 import ProtectedRoute from "../protected-route/protected-route";
 import LoggedProtect from "../logged-protect/logged-protect";
 import ResetProtect from "../reset-protect/reset-protect";
-import {
-  CLOSE_DETAILS,
-  removeDetails,
-} from "../../services/actions/ingredient-details";
 import IngredientDetails from "../burger-ingredients/ingredient-item/ingredient_details/ingredient_details";
 import Feed from "../../pages/feed/feed";
 import { useDispatch } from "../../services/hooks";
@@ -30,8 +26,6 @@ const AppBody = () => {
   const history = useHistory();
 
   const handleClose = () => {
-    dispatch({ type: CLOSE_DETAILS });
-    dispatch(removeDetails());
     localStorage.removeItem("show");
     history.replace("/");
   };

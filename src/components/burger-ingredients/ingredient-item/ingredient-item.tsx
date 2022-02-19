@@ -4,7 +4,6 @@ import {
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { setDetails } from "../../../services/actions/ingredient-details";
 import { DragPreviewImage, useDrag } from "react-dnd";
 import { useHistory } from "react-router-dom";
 import { IngredientItemType } from "../../../utils/interface";
@@ -44,7 +43,6 @@ const IngredientItem = ({ item }: IngredientItemProps) => {
   };
 
   const handleClick = () => {
-    dispatch(setDetails(item));
     history.push({
       state: { background: { pathname: "/" } },
       pathname: `/ingredients/${item._id}`,

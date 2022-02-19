@@ -11,10 +11,9 @@ export const GET_RESET_SUCCESS: "GET_RESET_SUCCESS" = "GET_RESET_SUCCESS";
 
 export const GET_REGISTER_REQUEST: "GET_REGISTER_REQUEST" =
   "GET_REGISTER_REQUEST";
-export const GET_REGISTER_FAILED: "GET_REGISTER_REQUEST" =
-  "GET_REGISTER_REQUEST";
-export const GET_REGISTER_SUCCESS: "GET_REGISTER_REQUEST" =
-  "GET_REGISTER_REQUEST";
+export const GET_REGISTER_FAILED: "GET_REGISTER_FAILED" = "GET_REGISTER_FAILED";
+export const GET_REGISTER_SUCCESS: "GET_REGISTER_SUCCESS" =
+  "GET_REGISTER_SUCCESS";
 
 export const AUTH_REQUEST: "AUTH_REQUEST" = "AUTH_REQUEST";
 export const AUTH_SUCCESS: "AUTH_SUCCESS" = "AUTH_SUCCESS";
@@ -56,11 +55,9 @@ export interface IGetResetSucces {
 
 export interface IGetRegisterRequest {
   readonly type: typeof GET_REGISTER_REQUEST;
-  readonly payload: any;
 }
 export interface IGetRegisterFailed {
   readonly type: typeof GET_REGISTER_FAILED;
-  readonly payload: any;
 }
 export interface IGetRegisterSucces {
   readonly type: typeof GET_REGISTER_SUCCESS;
@@ -190,7 +187,6 @@ export const register: AppThunk = (
   return (dispatch: AppDispatch) => {
     dispatch({
       type: GET_REGISTER_REQUEST,
-      payload: "",
     });
     fetch(`${MAIN_API}/auth/register`, {
       method: "POST",
@@ -205,7 +201,7 @@ export const register: AppThunk = (
     })
       .then((res) => {
         if (res.ok) return res.json();
-        else dispatch({ type: GET_REGISTER_FAILED, payload: "" });
+        else dispatch({ type: GET_REGISTER_FAILED });
       })
       .then((res) => {
         dispatch({ type: GET_REGISTER_SUCCESS, payload: res });

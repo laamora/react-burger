@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import style from "./ingredient_details.module.css";
 import Modal from "../../../modal/modal";
 import { useParams } from "react-router";
-import { RooteReducer } from "../../../../services/reducers/interface";
 import { IngredientItemType } from "../../../../utils/interface";
 import { useSelector } from "../../../../services/hooks";
 
@@ -14,9 +13,7 @@ const IngredientDetails = ({ onClose }: IngredientDetailsProps) => {
   const [ingredient, setIngredient] =
     useState<IngredientItemType | undefined>();
   const { id } = useParams<any>();
-  const data = useSelector(
-    (state: RooteReducer) => state.ingredients?.ingredients
-  );
+  const data = useSelector((state) => state.ingredients?.ingredients);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setIngredient(data && data.find((item) => item._id === `${id}`));

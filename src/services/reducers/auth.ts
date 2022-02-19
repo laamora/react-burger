@@ -157,7 +157,7 @@ export const auth = (state = defaultState, action: TAuth): TAuthState => {
     case GET_REGISTER_SUCCESS: {
       return {
         ...state,
-        registerSuccess: action.payload.success,
+        registerSuccess: true,
         user: { name: action.payload.name, email: action.payload.email },
         registerRequest: false,
         registerFailed: false,

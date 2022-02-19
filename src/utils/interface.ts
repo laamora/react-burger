@@ -1,7 +1,6 @@
 import { TAuth } from "../services/actions/auth";
 import { TBurgerConstructor } from "../services/actions/burger-constructor";
 import { TBurgerIngredients } from "../services/actions/burger-ingredients";
-import { TIngredientDetails } from "../services/actions/ingredient-details";
 import { TOrderDetails } from "../services/actions/order-details";
 import { store } from "../services/store";
 import { ThunkAction } from "redux-thunk";
@@ -12,7 +11,6 @@ export type TApplicationActions =
   | TAuth
   | TBurgerConstructor
   | TBurgerIngredients
-  | TIngredientDetails
   | TOrderDetails;
 
 export type AppThunk<TReturn = void> = ActionCreator<

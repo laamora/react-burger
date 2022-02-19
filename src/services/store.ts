@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import { burgerIngredients } from "./reducers/burger-ingredients";
 import { burgerConstructor } from "./reducers/burger-constructor";
-import { ingredientDetails } from "./reducers/ingredient-details";
 import { orderDetails } from "./reducers/order-details";
 import { auth } from "./reducers/auth";
 import { socketMiddleware, WsActions } from "./middleware/socketMiddleware";
@@ -15,7 +14,7 @@ import {
   WS_CONNECTION_SUCCESS,
   WS_GET_MESSAGE,
 } from "./actions/wsAction";
-import { wsReducer } from "./reducers/wsReducer.tsx";
+import { wsReducer } from "./reducers/wsReducer";
 
 const wsAction: WsActions = {
   wsInit: WS_CONNECTION_START,
@@ -40,7 +39,6 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   ingredients: burgerIngredients,
   constructors: burgerConstructor,
-  details: ingredientDetails,
   order: orderDetails,
   auth: auth,
   ws: wsReducer,
