@@ -34,7 +34,6 @@ const BurgerConstructor = () => {
     } else {
       showDetails(true);
       const Ids = [...ingredients.map((item) => item._id), bun!._id];
-      console.log(Ids);
       dispatch(getNumber(Ids));
     }
   };

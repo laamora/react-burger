@@ -45,7 +45,6 @@ export const fetchData: AppThunk = () => {
       .then((data) => dispatch(getData(data)))
       .catch((e) => {
         dispatch(setError(e));
-        console.log(e);
       });
   };
 };

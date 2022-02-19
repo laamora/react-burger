@@ -367,7 +367,6 @@ export const changeUserData: AppThunk = (object: {
         password: object.password,
       };
     }
-    console.log(obj);
     dispatch({
       type: CHANGE_USER_REQUEST,
     });
