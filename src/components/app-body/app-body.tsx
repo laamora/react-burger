@@ -15,14 +15,12 @@ import LoggedProtect from "../logged-protect/logged-protect";
 import ResetProtect from "../reset-protect/reset-protect";
 import IngredientDetails from "../burger-ingredients/ingredient-item/ingredient_details/ingredient_details";
 import Feed from "../../pages/feed/feed";
-import { useDispatch } from "../../services/hooks";
 import OrderInfo from "../order-item/order-info/order-info";
 import Modal from "../modal/modal";
 
 const AppBody = () => {
   const location = useLocation<any>();
   const background = location.state?.background;
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const handleClose = () => {
