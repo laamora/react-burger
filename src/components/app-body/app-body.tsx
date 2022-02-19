@@ -31,7 +31,7 @@ const AppBody = () => {
   return (
     <main className={style.main}>
       <Switch location={background ?? location}>
-        <Route exact path="/">
+        <Route exact path={["/", "/react-burger"]}>
           <Constructor />
         </Route>
         <LoggedProtect exact path="/login">
