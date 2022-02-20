@@ -63,7 +63,7 @@ describe("constructor tests", () => {
 
   it("close ingredient modal", () => {
     cy.get("#closeIcon").click();
-    cy.get("#root").not("#modal");
+    cy.get("#modal").should("not.exist");
   });
 
   it("drag and drop testing", () => {
@@ -95,6 +95,6 @@ describe("constructor tests", () => {
 
   it("close order modal", () => {
     cy.get("#closeIcon").click();
-    cy.get("#root").not("#modal");
+    cy.get("#modal").should("not.exist");
   });
 });
